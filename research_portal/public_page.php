@@ -42,21 +42,14 @@ if ($conn && !$conn->connect_error) {
         </div>
 
         <h1 class="hero-title">
-            <span><?= $is_rtl ? 'پیشگام در پژوهش‌های ' : 'Pushing the Frontiers of ' ?></span>
-            <span class="gradient-text"><?= $is_rtl ? 'بینایی ماشین، یادگیری عمیق و پردازش تصویر' : 'Computer Vision, Deep Learning & Multimedia' ?></span>
+            <span class="gradient-text"><?= $is_rtl ? '«هر انسان، داستانی دارد؛ هر تخصص، جهانی.»' : '“Every human has a story; every expertise, a universe.”' ?></span>
         </h1>
 
         <p class="hero-desc">
             <?= $is_rtl 
-                ? 'آزمایشگاه پردازش تصویر و بینایی ماشین دانشگاه رازی؛ پیشرو در پژوهش‌های هوش مصنوعی پزشکی، سامانه‌های بینایی خودروهای خودران، مدل‌های زبانی چندوجهی و شتاب‌دهنده‌های سخت‌افزاری کم‌مصرف.' 
-                : 'Pioneering innovative research in medical image computing, autonomous vehicle perception, multimodal vision-language models, and energy-efficient edge neural accelerators.' ?>
+                ? 'پیشگام در پژوهش‌های بینایی ماشین، یادگیری عمیق، پردازش تصویر، هوش مصنوعی پزشکی، خودروهای خودران، مدل‌های زبانی چندوجهی و شتاب‌دهنده‌های سخت‌افزاری در دانشگاه رازی.' 
+                : 'Pioneering innovative research in medical image computing, autonomous vehicle perception, multimodal vision-language models, and energy-efficient edge neural accelerators at Razi University.' ?>
         </p>
-
-        <div style="margin-bottom: 26px;">
-            <span style="display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: var(--radius-full); padding: 8px 24px; font-size: 1.05rem; color: var(--accent-cyan); font-weight: 600; box-shadow: var(--shadow-glow); backdrop-filter: blur(8px);">
-                ✨ <?= $is_rtl ? '«هر انسان، داستانی دارد؛ هر تخصص، جهانی.»' : '“Every human has a story; every expertise, a universe.”' ?>
-            </span>
-        </div>
 
         <div class="hero-actions">
             <a href="research.php" class="btn btn-primary">
