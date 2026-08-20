@@ -5,77 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اعضای آزمایشگاه و پژوهشگران | آزمایشگاه پردازش تصویر و بینایی ماشین</title>
     
-    <!-- Google Fonts -->
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Modern Theme CSS -->
     <link rel="stylesheet" href="research_portal/css/modern-theme.css">
-    <style>
-        .page-header {
-            padding: 130px 0 50px 0;
-            background: var(--gradient-hero);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .member-modal-content {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-        .member-modal-avatar {
-            width: 140px;
-            height: 175px;
-            border-radius: var(--radius-md);
-            object-fit: cover;
-            border: 2px solid var(--border-glow);
-        }
-    </style>
 </head>
 <body>
 
-<!-- High-Tech Sticky Navbar -->
+<!-- High-Tech Navigation Bar -->
 <header class="navbar">
     <div class="container navbar-container">
+        <!-- Brand Logo -->
         <a href="index.html" class="nav-brand">
             <div class="nav-logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
                     <circle cx="12" cy="12" r="3"/>
                 </svg>
             </div>
             <div class="nav-brand-text">
-                <span class="nav-brand-title" id="t-nav-brand">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
-                <span class="nav-brand-sub" id="t-nav-sub">دانشکده فنی و مهندسی - دانشگاه رازی</span>
+                <span class="nav-brand-title">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                <span class="nav-brand-sub">دانشکده مهندسی - دانشگاه رازی</span>
             </div>
         </a>
 
+        <!-- Desktop Navigation Links -->
         <nav>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link" id="t-menu-home">صفحه اصلی</a></li>
-                <li class="nav-item"><a href="faculty.html" class="nav-link" id="t-menu-faculty">اساتید راهنما</a></li>
-                <li class="nav-item"><a href="research.html" class="nav-link" id="t-menu-research">حوزه‌های پژوهشی</a></li>
-                <li class="nav-item"><a href="team.html" class="nav-link active" id="t-menu-team">اعضای آزمایشگاه</a></li>
-                <li class="nav-item"><a href="projects.html" class="nav-link" id="t-menu-projects">پروژه‌ها</a></li>
-                <li class="nav-item"><a href="publications.html" class="nav-link" id="t-menu-pubs">مقالات علمی</a></li>
-                <li class="nav-item"><a href="news.html" class="nav-link" id="t-menu-news">اخبار و رویدادها</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link" id="t-menu-contact">درباره ما و تماس</a></li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">صفحه اصلی</a>
+                </li>
+                <li class="nav-item">
+                    <a href="faculty.html" class="nav-link">اساتید راهنما</a>
+                </li>
+                <li class="nav-item">
+                    <a href="research.html" class="nav-link">حوزه‌های پژوهشی</a>
+                </li>
+                <li class="nav-item">
+                    <a href="team.html" class="nav-link active">اعضای آزمایشگاه</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">پروژه‌ها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="publications.html" class="nav-link">مقالات علمی</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">اخبار و رویدادها</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">درباره ما و تماس</a>
+                </li>
             </ul>
         </nav>
 
+        <!-- Actions -->
         <div class="nav-actions">
-            <button type="button" class="lang-toggle" id="btn-toggle-language" title="English / فارسی">
-                🌐 English
-            </button>
-            <button type="button" class="theme-toggle" id="btn-toggle-theme" title="تغییر تم">
-                ☀️
-            </button>
+            <button type="button" class="theme-toggle" aria-label="Toggle Theme">☀️</button>
             <button type="button" class="btn btn-primary btn-sm" id="btn-open-admin" onclick="openAdminModal()">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                <span id="t-nav-admin">پنل مدیریت</span>
+                <span>پنل مدیریت</span>
             </button>
             <button class="mobile-toggle" aria-label="Menu">☰</button>
         </div>
@@ -83,7 +75,7 @@
 </header>
 
 <!-- Page Header -->
-<div class="page-header">
+<div class="page-header" style="padding: 130px 0 45px 0; text-align: center; border-bottom: 1px solid var(--border-color); background: var(--gradient-hero);">
     <div class="container">
         <span class="section-badge">Scholars & Graduates</span>
         <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 8px;">اعضای آزمایشگاه و پژوهشگران</h1>
@@ -105,9 +97,9 @@
         <!-- Filter & Search Bar -->
         <div class="filter-bar">
             <div class="filter-tabs">
-                <button type="button" class="filter-btn student-filter-tab active" data-filter="all">همه پژوهشگران (۳۵)</button>
+                <button type="button" class="filter-btn student-filter-tab active" data-filter="all">همه اعضا (۲۵+)</button>
                 <button type="button" class="filter-btn student-filter-tab" data-filter="phd">دانشجویان دکتری (۹)</button>
-                <button type="button" class="filter-btn student-filter-tab" data-filter="msc">دانشجویان کارشناسی ارشد (۲۲)</button>
+                <button type="button" class="filter-btn student-filter-tab" data-filter="msc">دانشجویان ارشد (۱۲)</button>
                 <button type="button" class="filter-btn student-filter-tab" data-filter="alumni">فارغ‌التحصیلان (۴)</button>
             </div>
 
@@ -117,9 +109,393 @@
             </div>
         </div>
 
-        <!-- Dynamic Grid generated via JS -->
-        <div class="students-grid" id="students-grid-container"></div>
-        <div id="no-students-msg" style="display: none; text-align: center; padding: 40px; color: var(--text-muted);">
+        <!-- Static Students Grid -->
+        <div class="students-grid" id="students-grid-container">
+
+            <!-- Member 1: Faezeh Safari -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="فائزه صفری faezeh safari هوش مصنوعی llm medical image knowledge graphs دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1779031340_9001.png" alt="فائزه صفری" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">فائزه صفری (Faezeh Safari)</h4>
+                <div class="student-major">هوش مصنوعی (Artificial Intelligence)</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Integrating Multimodal Large Language Models and Knowledge Graphs for Disease Understanding
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('فائزه صفری (Faezeh Safari)', 'دانشجوی دکتری', 'badge-phd', 'هوش مصنوعی (Artificial Intelligence)', '1779031340_9001.png', 'Integrating Multimodal Large Language Models and Knowledge Graphs for Disease Understanding', 'Artificial Intelligence, LLMs, Multimodal NLP, Medical Image Processing, Knowledge Graphs', 'دکتر عبدالله چاله چاله', 'faezehsafari96@outlook.com', 'https://scholar.google.com/citations?hl=en&user=KfJm4LgAAAAJ')">مشاهده مشخصات</button>
+                    <a href="https://scholar.google.com/citations?hl=en&user=KfJm4LgAAAAJ" target="_blank" class="btn btn-secondary btn-sm" title="Google Scholar">🎓</a>
+                    <a href="mailto:faezehsafari96@outlook.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 2: Aref Arefnia -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="عارف عارف‌نیا aref arefnia معماری سیستم‌های کامپیوتری federated learning دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782295489_7777.jpg" alt="عارف عارف‌نیا" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">عارف عارف‌نیا (Aref Arefnia)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Adaptive selection of participants in federated learning under data and system heterogeneity
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('عارف عارف‌نیا (Aref Arefnia)', 'دانشجوی دکتری', 'badge-phd', 'معماری سیستم‌های کامپیوتری', '1782295489_7777.jpg', 'Adaptive selection of participants in federated learning under data and system heterogeneity', 'Federated learning, image processing, machine learning', 'دکتر عبدالله چاله چاله', 'arefnia.aref@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:arefnia.aref@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 3: Tahereh Karami -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="طاهره کرمی tahereh karami مهندسی کامپیوتر deep vision multimodal foundation دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782295798_1956.jpg" alt="طاهره کرمی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">طاهره کرمی (Tahereh Karami)</h4>
+                <div class="student-major">مهندسی کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Deep Vision & Multi-Modal Foundation Architectures
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('طاهره کرمی (Tahereh Karami)', 'دانشجوی دکتری', 'badge-phd', 'مهندسی کامپیوتر', '1782295798_1956.jpg', 'Deep Vision & Multi-Modal Foundation Architectures', 'Image processing, Artificial Intelligence, LLMs', 'دکتر عبدالله چاله چاله', 'Tkarami1368@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:Tkarami1368@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 4: Aydin Sadeghi -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="آیدین صادقی aydin sadeghi معماری سیستم‌های کامپیوتری fault-tolerant vision anomaly detection دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782296646_6814.jpg" alt="آیدین صادقی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">آیدین صادقی (Aydin Sadeghi)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Fault-Tolerant Vision Systems & Deep Anomaly Detection
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('آیدین صادقی (Aydin Sadeghi)', 'دانشجوی دکتری', 'badge-phd', 'معماری سیستم‌های کامپیوتری', '1782296646_6814.jpg', 'Fault-Tolerant Vision Systems & Deep Anomaly Detection', 'Image recognition, machine learning, data mining, fault tolerant systems', 'دکتر عبدالله چاله چاله', 'sadeghi_aidin@yahoo.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:sadeghi_aidin@yahoo.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 5: Mozhgan Salehi Nasab -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="مژگان صالحی نسب mozhgan salehi nasab معماری کامپیوتر deep representation learning scene parsing دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782384478_9017.jpg" alt="مژگان صالحی نسب" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">مژگان صالحی نسب (Mozhgan Salehi Nasab)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Deep Representation Learning for Complex Scene Parsing
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('مژگان صالحی نسب (Mozhgan Salehi Nasab)', 'دانشجوی دکتری', 'badge-phd', 'معماری سیستم‌های کامپیوتری', '1782384478_9017.jpg', 'Deep Representation Learning for Complex Scene Parsing', 'Image processing, deep learning, data mining', 'دکتر عبدالله چاله چاله', 'mozhgansalehinasab@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:mozhgansalehinasab@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 6: Hadi Ranjbarzadeh -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="هادی رنجبرزاده hadi ranjbarzadeh معماری کامپیوتر neural network accelerators دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782386387_7102.jpg" alt="هادی رنجبرزاده" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">هادی رنجبرزاده (Hadi Ranjbarzadeh)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>High-Performance Neural Network Accelerators for Vision
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('هادی رنجبرزاده (Hadi Ranjbarzadeh)', 'دانشجوی دکتری', 'badge-phd', 'معماری سیستم‌های کامپیوتری', '1782386387_7102.jpg', 'High-Performance Neural Network Accelerators for Vision', 'Image processing, deep learning, data mining', 'دکتر عبدالله چاله چاله', 'mr.hadi.ranjbarzadeh@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:mr.hadi.ranjbarzadeh@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 7: Samaneh Khosravi -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="سمانه خسروی samaneh khosravi معماری کامپیوتر neural network accelerators approximate circuits دکتر آرزو کامران">
+                <img class="student-avatar" src="research_portal/uploads/1782387606_3047.jpg" alt="سمانه خسروی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">سمانه خسروی (Samaneh Khosravi)</h4>
+                <div class="student-major">معماری کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Neural network accelerators & approximate computational circuits
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر آرزو کامران
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('سمانه خسروی (Samaneh Khosravi)', 'دانشجوی دکتری', 'badge-phd', 'معماری کامپیوتر', '1782387606_3047.jpg', 'Neural network accelerators & approximate computational circuits', 'Neural network accelerators, approximate circuits, low-power VLSI', 'دکتر آرزو کامران', 'samanehkhosravi7395@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:samanehkhosravi7395@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 8: Fatemeh Torkashvand -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="فاطمه ترکاشوند fatemeh torkashvand معماری کامپیوتر skin lesions deep learning دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782556230_8034.jpeg" alt="فاطمه ترکاشوند" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">فاطمه ترکاشوند (Fatemeh Torkashvand)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Classification and description of images related to skin lesions based on deep learning
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('فاطمه ترکاشوند (Fatemeh Torkashvand)', 'دانشجوی دکتری', 'badge-phd', 'معماری سیستم‌های کامپیوتری', '1782556230_8034.jpeg', 'Classification and description of images related to skin lesions based on deep learning', 'Medical Image Processing, Deep Learning & Vision Diagnostics', 'دکتر عبدالله چاله چاله', 'torkashvand.984@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:torkashvand.984@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 9: Saeid Barshandeh -->
+            <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="سعید برشانده saeid barshandeh مهندسی کامپیوتر metaheuristic global optimization deep neural vision دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782910311_6363.jpg" alt="سعید برشانده" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-phd">دانشجوی دکتری</span>
+                <h4 class="student-name">سعید برشانده (Saeid Barshandeh)</h4>
+                <div class="student-major">مهندسی کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع رساله: </strong>Metaheuristic Global Optimization for Deep Neural Vision Models
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('سعید برشانده (Saeid Barshandeh)', 'دانشجوی دکتری', 'badge-phd', 'مهندسی کامپیوتر', '1782910311_6363.jpg', 'Metaheuristic Global Optimization for Deep Neural Vision Models', 'Metaheuristic Algorithms, Deep Learning, NLP, Edge Computing, IoT', 'دکتر عبدالله چاله چاله', 'saeid_barshandeh@yahoo.com', 'https://scholar.google.com/citations?user=afAo-7gAAAAJ')">مشاهده مشخصات</button>
+                    <a href="https://scholar.google.com/citations?user=afAo-7gAAAAJ" target="_blank" class="btn btn-secondary btn-sm" title="Google Scholar">🎓</a>
+                    <a href="mailto:saeid_barshandeh@yahoo.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 10: Fatemeh Khalvandi -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="فاطمه خلوندی fatemeh khalvandi مهندسی کامپیوتر alzheimer mri medical imaging دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782395514_2410.webp" alt="فاطمه خلوندی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">فاطمه خلوندی (Fatemeh Khalvandi)</h4>
+                <div class="student-major">مهندسی کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Alzheimer's disease diagnosis using artificial intelligence & MRI techniques
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('فاطمه خلوندی (Fatemeh Khalvandi)', 'دانشجوی ارشد', 'badge-msc', 'مهندسی کامپیوتر', '1782395514_2410.webp', 'Alzheimer disease diagnosis using artificial intelligence & MRI techniques', 'Natural Language Processing, AI in Healthcare, Medical Imaging', 'دکتر عبدالله چاله چاله', 'Khalvandifatemeh@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:Khalvandifatemeh@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 11: Ali Heidari -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="علی حیدری ali heidari مهندسی کامپیوتر traffic signs machine vision دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782386720_5389.jpg" alt="علی حیدری" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">علی حیدری (Ali Heidari)</h4>
+                <div class="student-major">مهندسی کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Providing a solution for recognizing traffic signs using machine vision
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('علی حیدری (Ali Heidari)', 'دانشجوی ارشد', 'badge-msc', 'مهندسی کامپیوتر', '1782386720_5389.jpg', 'Providing a solution for recognizing traffic signs using machine vision', 'Image processing, Real-Time Autonomous Driving Vision', 'دکتر عبدالله چاله چاله', 'ali.heidari09211380@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:ali.heidari09211380@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 12: Sara Khezeli -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="سارا خزلی sara khezeli هوش مصنوعی restoration historical monuments generative inpainting دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782383938_3395.png" alt="سارا خزلی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">سارا خزلی (Sara Khezeli)</h4>
+                <div class="student-major">هوش مصنوعی</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Restoration of historical buildings and monuments using artificial intelligence & generative inpainting
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('سارا خزلی (Sara Khezeli)', 'دانشجوی ارشد', 'badge-msc', 'هوش مصنوعی', '1782383938_3395.png', 'Restoration of historical buildings and monuments using artificial intelligence & generative inpainting', 'Generative inpainting, Heritage restoration, Counterfeit detection, Biometrics', 'دکتر عبدالله چاله چاله', 'khezelisara1@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:khezelisara1@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 13: Atefe Darabi -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="عاطفه دارابی قاسمی atefe darabi سیستم‌های چندرسانه‌ای sentiment analysis nlp deep learning دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782395502_4025.webp" alt="عاطفه دارابی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">عاطفه دارابی قاسمی (Atefe Darabi)</h4>
+                <div class="student-major">سیستم‌های چندرسانه‌ای</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Sentiment analysis on text using Persian natural language processing and deep learning
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('عاطفه دارابی قاسمی (Atefe Darabi)', 'دانشجوی ارشد', 'badge-msc', 'سیستم‌های چندرسانه‌ای', '1782395502_4025.webp', 'Sentiment analysis on text using Persian natural language processing and deep learning', 'Sentiment analysis, NLP, Text Mining', 'دکتر عبدالله چاله چاله', '5-atefe.darabi.1995@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:5-atefe.darabi.1995@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 14: Sobhan Khani -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="سبحان خانی sobhan khani مهندسی کامپیوتر multimodal audio visual processing دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782296863_1954.jpeg" alt="سبحان خانی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">سبحان خانی (Sobhan Khani)</h4>
+                <div class="student-major">مهندسی کامپیوتر</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Multimodal Audio-Visual Feature Processing
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('سبحان خانی (Sobhan Khani)', 'دانشجوی ارشد', 'badge-msc', 'مهندسی کامپیوتر', '1782296863_1954.jpeg', 'Multimodal Audio-Visual Feature Processing', 'Image processing, Audio processing, Financial data processing', 'دکتر عبدالله چاله چاله', 'sobhankhani73@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:sobhankhani73@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 15: Shiwa Cheraghi -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="شیوا چراغی shiwa cheraghi سیستم‌های چندرسانه‌ای wood defect detection industrial image processing دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782395490_8951.webp" alt="شیوا چراغی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">شیوا چراغی (Shiwa Cheraghi)</h4>
+                <div class="student-major">سیستم‌های چندرسانه‌ای</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Wood defect detection using image processing and deep learning techniques
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('شیوا چراغی (Shiwa Cheraghi)', 'دانشجوی ارشد', 'badge-msc', 'سیستم‌های چندرسانه‌ای', '1782395490_8951.webp', 'Wood defect detection using image processing and deep learning techniques', 'Industrial image processing, automated defect classification', 'دکتر عبدالله چاله چاله', 'shiwacheragi.it.7@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:shiwacheragi.it.7@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 16: Samira Karimi -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="سمیرا کریمی samira karimi هوش مصنوعی رباتیک driver distraction machine vision دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782296243_7720.jpg" alt="سمیرا کریمی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">سمیرا کریمی (Samira Karimi)</h4>
+                <div class="student-major">هوش مصنوعی و رباتیک</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Automatic detection of driver distraction using machine vision and deep learning
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('سمیرا کریمی (Samira Karimi)', 'دانشجوی ارشد', 'badge-msc', 'هوش مصنوعی و رباتیک', '1782296243_7720.jpg', 'Automatic detection of driver distraction using machine vision and deep learning', 'Machine Vision, Image Processing, Driver Monitoring Systems', 'دکتر عبدالله چاله چاله', 'Karimisamira1993@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:Karimisamira1993@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 17: Akram Soltanabadi -->
+            <div class="glass-card student-card student-card-item" data-degree="msc" data-graduated="false" data-search="اکرم سلطان‌آبادی akram soltanabadi چندرسانه‌ای lung diseases medical image processing دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/1782395449_1839.webp" alt="اکرم سلطان‌آبادی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-msc">دانشجوی ارشد</span>
+                <h4 class="student-name">اکرم سلطان‌آبادی (Akram Soltanabadi)</h4>
+                <div class="student-major">سیستم‌های چندرسانه‌ای</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Differential diagnosis of lung diseases using deep learning-based methods
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('اکرم سلطان‌آبادی (Akram Soltanabadi)', 'دانشجوی ارشد', 'badge-msc', 'سیستم‌های چندرسانه‌ای', '1782395449_1839.webp', 'Differential diagnosis of lung diseases using deep learning-based methods', 'Medical Image Processing, Deep Learning, Healthcare AI', 'دکتر عبدالله چاله چاله', 'sa.soltanabadi@gmail.com', 'https://scholar.google.com/citations?hl=en&user=nFR5zjlAAAAJ')">مشاهده مشخصات</button>
+                    <a href="https://scholar.google.com/citations?hl=en&user=nFR5zjlAAAAJ" target="_blank" class="btn btn-secondary btn-sm" title="Google Scholar">🎓</a>
+                    <a href="mailto:sa.soltanabadi@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 18: Roghayeh Moradi (Alumni) -->
+            <div class="glass-card student-card student-card-item" data-degree="alumni" data-graduated="true" data-search="رقیه مرادی roghayeh moradi فارغ التحصیل vlsi approximate collector edge computing دکتر آرزو کامران">
+                <img class="student-avatar" src="research_portal/uploads/1782387792_1318.jpg" alt="رقیه مرادی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-alumni">فارغ‌التحصیل</span>
+                <h4 class="student-name">رقیه مرادی (Roghayeh Moradi)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Segmented approximate collector with effective cutting and fast correction unit
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر آرزو کامران
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('رقیه مرادی (Roghayeh Moradi)', 'فارغ‌التحصیل', 'badge-alumni', 'معماری سیستم‌های کامپیوتری', '1782387792_1318.jpg', 'Segmented approximate collector with effective cutting and fast correction unit', 'Digital system design, approximate computing circuits, VLSI', 'دکتر آرزو کامران', 'roghayehmoradi.rm@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:roghayehmoradi.rm@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 19: Tayyaba Karimi (Alumni) -->
+            <div class="glass-card student-card student-card-item" data-degree="alumni" data-graduated="true" data-search="طیبه کریمی tayyaba karimi فارغ التحصیل approximate adder deep learning دکتر آرزو کامران">
+                <img class="student-avatar" src="research_portal/uploads/1782387925_8459.jpg" alt="طیبه کریمی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-alumni">فارغ‌التحصیل</span>
+                <h4 class="student-name">طیبه کریمی (Tayyaba Karimi)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Design of an Approximate Adder Considering Energy and Delay for Deep Learning
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر آرزو کامران
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('طیبه کریمی (Tayyaba Karimi)', 'فارغ‌التحصیل', 'badge-alumni', 'معماری سیستم‌های کامپیوتری', '1782387925_8459.jpg', 'Design of an Approximate Adder Considering Energy and Delay for Deep Learning', 'Approximate hardware design, low power arithmetic circuits', 'دکتر آرزو کامران', 'karimi.t20@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:karimi.t20@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 20: Zainab Moradi (Alumni) -->
+            <div class="glass-card student-card student-card-item" data-degree="alumni" data-graduated="true" data-search="زینب مرادی zainab moradi فارغ التحصیل test generation hybrid digital circuits دکتر آرزو کامران">
+                <img class="student-avatar" src="research_portal/uploads/1782388086_7726.jpg" alt="زینب مرادی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-alumni">فارغ‌التحصیل</span>
+                <h4 class="student-name">زینب مرادی (Zainab Moradi)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Test generation for hybrid digital circuits using critical path tracing
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر آرزو کامران
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('زینب مرادی (Zainab Moradi)', 'فارغ‌التحصیل', 'badge-alumni', 'معماری سیستم‌های کامپیوتری', '1782388086_7726.jpg', 'Test generation for hybrid digital circuits using critical path tracing', 'Digital systems testing, hardware verification', 'دکتر آرزو کامران', 'moradi72717@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:moradi72717@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+            <!-- Member 21: Mehdi Yousefi (Alumni) -->
+            <div class="glass-card student-card student-card-item" data-degree="alumni" data-graduated="true" data-search="مهدی یوسفی mehdi yousefi فارغ التحصیل edge fog computing architectures دکتر آرزو کامران">
+                <img class="student-avatar" src="research_portal/uploads/1782388270_4066.jpg" alt="مهدی یوسفی" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-alumni">فارغ‌التحصیل</span>
+                <h4 class="student-name">مهدی یوسفی (Mehdi Yousefi)</h4>
+                <div class="student-major">معماری سیستم‌های کامپیوتری</div>
+                <div class="student-thesis">
+                    <strong>موضوع پایان‌نامه: </strong>Design and testing of digital edge and fog computing architectures
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر آرزو کامران
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('مهدی یوسفی (Mehdi Yousefi)', 'فارغ‌التحصیل', 'badge-alumni', 'معماری سیستم‌های کامپیوتری', '1782388270_4066.jpg', 'Design and testing of digital edge and fog computing architectures', 'Edge computing, digital architecture testing', 'دکتر آرزو کامران', 'mr.yousefi09@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:mr.yousefi09@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="no-students-msg" style="display: none; text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 1.05rem;">
             موردی با این عبارت جستجو یافت نشد.
         </div>
 
@@ -190,588 +566,11 @@
 
 <!-- Member Profile Modal -->
 <div class="modal-overlay" id="member-modal">
-    <div class="modal-card">
-        <button class="modal-close" type="button">✕</button>
-        <div class="member-modal-content" id="member-modal-body"></div>
+    <div class="modal-card" style="max-width: 650px; width: 94%;">
+        <button class="modal-close" type="button" onclick="document.getElementById('member-modal').classList.remove('active')">✕</button>
+        <div class="member-modal-content" id="member-modal-body" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;"></div>
     </div>
 </div>
-
-<script>
-const labMembers = [
-    {
-        id: 13,
-        name: "فائزه صفری (Faezeh Safari)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "هوش مصنوعی (Artificial Intelligence)",
-        photo: "1779031340_9001.png",
-        thesis: "Integrating Multimodal Large Language Models and Knowledge Graphs for Disease Understanding",
-        interests: "Artificial Intelligence, LLMs, Multimodal NLP, Medical Image Processing, Knowledge Graphs",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "faezehsafari96@outlook.com",
-        scholar: "https://scholar.google.com/citations?hl=en&user=KfJm4LgAAAAJ",
-        graduated: false
-    },
-    {
-        id: 15,
-        name: "عارف عارف‌نیا (Aref Arefnia)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782295489_7777.jpg",
-        thesis: "Adaptive selection of participants in federated learning under data and system heterogeneity",
-        interests: "Federated learning, image processing, machine learning",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "arefnia.aref@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 16,
-        name: "طاهره کرمی (Tahereh Karami)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "مهندسی کامپیوتر",
-        photo: "1782295798_1956.jpg",
-        thesis: "Deep Vision & Multi-Modal Foundation Architectures",
-        interests: "Image processing, Artificial Intelligence, LLMs",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Tkarami1368@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 17,
-        name: "آیدین صادقی (Aydin Sadeghi)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782296646_6814.jpg",
-        thesis: "Fault-Tolerant Vision Systems & Deep Anomaly Detection",
-        interests: "Image recognition, machine learning, data mining, fault tolerant systems",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "sadeghi_aidin@yahoo.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 18,
-        name: "مژگان صالحی نسب (Mozhgan Salehi Nasab)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782384478_9017.jpg",
-        thesis: "Deep Representation Learning for Complex Scene Parsing",
-        interests: "Image processing, deep learning, data mining",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "mozhgansalehinasab@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 22,
-        name: "هادی رنجبرزاده (Hadi Ranjbarzadeh)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782386387_7102.jpg",
-        thesis: "High-Performance Neural Network Accelerators for Vision",
-        interests: "Image processing, deep learning, data mining",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "mr.hadi.ranjbarzadeh@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 26,
-        name: "سمانه خسروی (Samaneh Khosravi)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری کامپیوتر",
-        photo: "1782387606_3047.jpg",
-        thesis: "Neural network accelerators & approximate computational circuits",
-        interests: "Neural network accelerators, approximate circuits, low-power VLSI",
-        supervisor: "دکتر آرزو کامران (Dr. Kamran)",
-        email: "samanehkhosravi7395@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 34,
-        name: "فاطمه ترکاشوند (Fatemeh Torkashvand)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782556230_8034.jpeg",
-        thesis: "Classification and description of images related to skin lesions based on deep learning",
-        interests: "Medical Image Processing, Deep Learning & Vision Diagnostics",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "torkashvand.984@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 35,
-        name: "سعید برشانده (Saeid Barshandeh)",
-        degree: "PhD",
-        degreeLabel: "دانشجوی دکتری",
-        major: "مهندسی کامپیوتر",
-        photo: "1782910311_6363.jpg",
-        thesis: "Metaheuristic Global Optimization for Deep Neural Vision Models",
-        interests: "Metaheuristic Algorithms, Deep Learning, NLP, Edge Computing, IoT",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "saeid_barshandeh@yahoo.com",
-        scholar: "https://scholar.google.com/citations?user=afAo-7gAAAAJ",
-        graduated: false
-    },
-    {
-        id: 2,
-        name: "فاطمه خلوندی (Fatemeh Khalvandi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "مهندسی کامپیوتر",
-        photo: "1782395514_2410.webp",
-        thesis: "Alzheimer's disease diagnosis using artificial intelligence & MRI techniques",
-        interests: "Natural Language Processing, AI in Healthcare, Medical Imaging",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Khalvandifatemeh@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 3,
-        name: "علی حیدری (Ali Heidari)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "مهندسی کامپیوتر",
-        photo: "1782386720_5389.jpg",
-        thesis: "Providing a solution for recognizing traffic signs using machine vision",
-        interests: "Image processing, Real-Time Autonomous Driving Vision",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "ali.heidari09211380@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 4,
-        name: "سارا خزلی (Sara Khezeli)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782383938_3395.png",
-        thesis: "Restoration of historical buildings and monuments using artificial intelligence & generative inpainting",
-        interests: "Generative inpainting, Heritage restoration, Counterfeit detection, Biometrics",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "khezelisara1@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 5,
-        name: "عاطفه دارابی قاسمی (Atefe Darabi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "سیستم‌های چندرسانه‌ای",
-        photo: "1782395502_4025.webp",
-        thesis: "Sentiment analysis on text using Persian natural language processing and deep learning",
-        interests: "Sentiment analysis, NLP, Text Mining",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "5-atefe.darabi.1995@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 6,
-        name: "سبحان خانی (Sobhan Khani)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "مهندسی کامپیوتر",
-        photo: "1782296863_1954.jpeg",
-        thesis: "Multimodal Audio-Visual Feature Processing",
-        interests: "Image processing, Audio processing, Financial data processing",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "sobhankhani73@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 7,
-        name: "سینا ابراهیمی (Sina Ebrahimi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782296775_4827.jpg",
-        thesis: "Agentic AI Frameworks & Generative Multi-Agent Systems",
-        interests: "AI agents, Agentic AI, Generative AI, Vision Transformers",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Sinaebrahimi31@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 8,
-        name: "شیوا چراغی (Shiwa Cheraghi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "سیستم‌های چندرسانه‌ای",
-        photo: "1782395490_8951.webp",
-        thesis: "Wood defect detection using image processing and deep learning techniques",
-        interests: "Industrial image processing, automated defect classification",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "shiwacheragi.it.7@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 9,
-        name: "سمیرا کریمی (Samira Karimi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی و رباتیک",
-        photo: "1782296243_7720.jpg",
-        thesis: "Automatic detection of driver distraction using machine vision and deep learning",
-        interests: "Machine Vision, Image Processing, Driver Monitoring Systems",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Karimisamira1993@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 11,
-        name: "اکرم سلطان‌آبادی (Akram Soltanabadi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "سیستم‌های چندرسانه‌ای",
-        photo: "1782395449_1839.webp",
-        thesis: "Differential diagnosis of lung diseases using deep learning-based methods",
-        interests: "Medical Image Processing, Deep Learning, Healthcare AI",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "sa.soltanabadi@gmail.com",
-        scholar: "https://scholar.google.com/citations?hl=en&user=nFR5zjlAAAAJ",
-        graduated: false
-    },
-    {
-        id: 12,
-        name: "اکبر رنجبران (Akbar Ranjbaran)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "مهندسی کامپیوتر",
-        photo: "1782296993_7922.jpg",
-        thesis: "Urban Vision Analysis & Metaverse Analytics",
-        interests: "Artificial Intelligence, Metaverse, Urban Image Processing",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "ranjbaran09@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 14,
-        name: "محمدمهدی رجبی (Mohammad Mehdi Rajabi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "معماری کامپیوتر",
-        photo: "1782395432_8875.webp",
-        thesis: "Embedded Vision & Distributed IoT Processing",
-        interests: "Computer Vision, Distributed Systems, IoT, Embedded Software",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "mohammadmehdirajabi9@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 19,
-        name: "روزا ادیب‌راد (Roza Adibrad)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782384793_6450.jpg",
-        thesis: "NLP models in extracting and inferring information from medical record texts",
-        interests: "Text analysis models, Clinical data mining, Biomedical NLP",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "roza.adibrad@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 20,
-        name: "صفا ثامر علی (Safa Thamer Ali)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782384980_6297.jpg",
-        thesis: "Artificial intelligence in medical and healthcare imaging systems",
-        interests: "Machine vision, image processing, clinical AI",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "safathamer200@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 23,
-        name: "هبه عباس الطائی (Hiba Abbas Al-Ta'i)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782386600_3800.jpg",
-        thesis: "Early detection system for autism spectrum disorder using neural networks",
-        interests: "Deep Neural Networks, Medical Data Analysis, Autism Detection",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "hiba2026abas@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 24,
-        name: "مهسا نجفی (Mahsa Najafi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی و رباتیک",
-        photo: "1782386915_4469.jpg",
-        thesis: "Classification of skin diseases using deep multimodal learning",
-        interests: "Medical image processing, multimodal data analysis",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Najafimahsa1999@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 25,
-        name: "آزاده بهرامی (Azadeh Bahrami)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "فناوری اطلاعات",
-        photo: "1782387154_9911.jpeg",
-        thesis: "Generative Models in Visual Synthesis",
-        interests: "Generative AI, Diffusion Models, Computer Vision",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "azadibmi@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 27,
-        name: "رقیه مرادی (Roghayeh Moradi)",
-        degree: "MSc",
-        degreeLabel: "فارغ‌التحصیل",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782387792_1318.jpg",
-        thesis: "Segmented approximate collector with effective cutting and fast correction unit",
-        interests: "Digital system design, approximate computing circuits, VLSI",
-        supervisor: "دکتر آرزو کامران (Dr. Kamran)",
-        email: "roghayehmoradi.rm@gmail.com",
-        scholar: "",
-        graduated: true
-    },
-    {
-        id: 28,
-        name: "طیبه کریمی (Tayyaba Karimi)",
-        degree: "MSc",
-        degreeLabel: "فارغ‌التحصیل",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782387925_8459.jpg",
-        thesis: "Design of an Approximate Adder Considering Energy and Delay for Deep Learning",
-        interests: "Approximate hardware design, low power arithmetic circuits",
-        supervisor: "دکتر آرزو کامران (Dr. Kamran)",
-        email: "karimi.t20@gmail.com",
-        scholar: "",
-        graduated: true
-    },
-    {
-        id: 29,
-        name: "زینب مرادی (Zainab Moradi)",
-        degree: "MSc",
-        degreeLabel: "فارغ‌التحصیل",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782388086_7726.jpg",
-        thesis: "Test generation for hybrid digital circuits using critical path tracing",
-        interests: "Digital systems testing, hardware verification",
-        supervisor: "دکتر آرزو کامران (Dr. Kamran)",
-        email: "moradi72717@gmail.com",
-        scholar: "",
-        graduated: true
-    },
-    {
-        id: 30,
-        name: "مهدی یوسفی (Mehdi Yousefi)",
-        degree: "MSc",
-        degreeLabel: "فارغ‌التحصیل",
-        major: "معماری سیستم‌های کامپیوتری",
-        photo: "1782388270_4066.jpg",
-        thesis: "Design and testing of digital edge and fog computing architectures",
-        interests: "Edge computing, digital architecture testing",
-        supervisor: "دکتر آرزو کامران (Dr. Kamran)",
-        email: "mr.yousefi09@gmail.com",
-        scholar: "",
-        graduated: true
-    },
-    {
-        id: 31,
-        name: "پژمان نجفی (Pezhman Najafie)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782395345_4751.jpg",
-        thesis: "Diagnosis of liver diseases using metaheuristics and medical image analysis",
-        interests: "Machine learning, metaheuristic algorithms, medical image processing",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "pezhman3500@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 33,
-        name: "فاطمه عزیزی (Fatemeh Azizi)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782556003_9144.jpg",
-        thesis: "Automatic Image Captioning: A Review of Classical to Modern Vision Architectures",
-        interests: "Image description, Vision-Language Transformers, Deep Learning",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "fatemehazizi.mail@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 36,
-        name: "سید آرمین حسنی (Seyed Armin Hassani)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "هوش مصنوعی",
-        photo: "1782910476_4365.jpeg",
-        thesis: "Detect and analyze network anomalies using artificial intelligence",
-        interests: "Network anomaly detection, deep security analytics",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "Armintrojawn@gmail.com",
-        scholar: "",
-        graduated: false
-    },
-    {
-        id: 37,
-        name: "لیلا مرتضایی (Leila Mortezaei)",
-        degree: "MSc",
-        degreeLabel: "دانشجوی ارشد",
-        major: "مهندسی نرم‌افزار",
-        photo: "1782910751_2067.jpg",
-        thesis: "Modeling and predicting dissolved oxygen levels based on water quality parameters using ML",
-        interests: "Machine learning, environmental data modeling",
-        supervisor: "دکتر عبدالله چاله چاله (Dr. Abdolah Chalechale)",
-        email: "leila.mortezaei97@gmail.com",
-        scholar: "",
-        graduated: false
-    }
-];
-
-function renderMembers(filter = 'all', query = '') {
-    const container = document.getElementById('students-grid-container');
-    const noMsg = document.getElementById('no-students-msg');
-    if (!container) return;
-
-    container.innerHTML = '';
-    const q = query.trim().toLowerCase();
-    let count = 0;
-
-    labMembers.forEach(m => {
-        let matchFilter = false;
-        if (filter === 'all') matchFilter = true;
-        else if (filter === 'phd') matchFilter = (m.degree === 'PhD' && !m.graduated);
-        else if (filter === 'msc') matchFilter = (m.degree === 'MSc' && !m.graduated);
-        else if (filter === 'alumni') matchFilter = m.graduated;
-
-        const text = `${m.name} ${m.thesis} ${m.interests} ${m.major} ${m.supervisor}`.toLowerCase();
-        const matchSearch = !q || text.includes(q);
-
-        if (matchFilter && matchSearch) {
-            count++;
-            const badgeClass = m.graduated ? 'badge-alumni' : (m.degree === 'PhD' ? 'badge-phd' : 'badge-msc');
-            const card = document.createElement('div');
-            card.className = 'glass-card student-card';
-            card.innerHTML = `
-                <img class="student-avatar" src="research_portal/uploads/${m.photo}" alt="${m.name}" onerror="this.src='research_portal/uploads/default.png'">
-                <span class="student-degree-badge ${badgeClass}">${m.degreeLabel}</span>
-                <h4 class="student-name">${m.name}</h4>
-                <div class="student-major">${m.major}</div>
-                <div class="student-thesis">
-                    <strong>موضوع پایان‌نامه: </strong>${m.thesis}
-                </div>
-                <div class="student-card-actions">
-                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openMemberModal(${m.id})">
-                        مشاهده مشخصات
-                    </button>
-                    ${m.scholar ? `<a href="${m.scholar}" target="_blank" class="btn btn-secondary btn-sm" title="Google Scholar">🎓</a>` : ''}
-                    <a href="mailto:${m.email}" class="btn btn-outline btn-sm" title="${m.email}">✉️</a>
-                </div>
-            `;
-            container.appendChild(card);
-        }
-    });
-
-    noMsg.style.display = count === 0 ? 'block' : 'none';
-}
-
-function openMemberModal(id) {
-    const m = labMembers.find(item => item.id === id);
-    if (!m) return;
-
-    const modal = document.getElementById('member-modal');
-    const body = document.getElementById('member-modal-body');
-    const badgeClass = m.graduated ? 'badge-alumni' : (m.degree === 'PhD' ? 'badge-phd' : 'badge-msc');
-
-    body.innerHTML = `
-        <img class="member-modal-avatar" src="research_portal/uploads/${m.photo}" alt="${m.name}">
-        <div style="flex: 1; min-width: 250px;">
-            <span class="student-degree-badge ${badgeClass}" style="display: inline-block; margin-bottom: 8px;">${m.degreeLabel}</span>
-            <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 6px;">${m.name}</h2>
-            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 14px;">🎓 رشته تحصیلی: ${m.major}</p>
-            
-            <p style="margin-bottom: 10px; color: var(--text-secondary);">
-                <strong>استاد راهنما: </strong>${m.supervisor}
-            </p>
-            <p style="margin-bottom: 14px; color: var(--text-secondary);">
-                <strong>ایمیل: </strong><a href="mailto:${m.email}" style="color: var(--accent-blue);">${m.email}</a>
-            </p>
-            
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 12px;">
-                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">📑 عنوان پایان‌نامه / رساله:</strong>
-                <span style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">${m.thesis}</span>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-sm);">
-                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">🔬 زمینه‌های پژوهشی:</strong>
-                <span style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">${m.interests}</span>
-            </div>
-            
-            ${m.scholar ? `<div style="margin-top: 16px;"><a href="${m.scholar}" target="_blank" class="btn btn-primary btn-sm">🎓 مشاهده پروفایل گوگل اسکالر</a></div>` : ''}
-        </div>
-    `;
-
-    modal.classList.add('active');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderMembers('all');
-
-    let currentFilter = 'all';
-    let currentSearch = '';
-
-    document.querySelectorAll('.student-filter-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.student-filter-tab').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.getAttribute('data-filter');
-            renderMembers(currentFilter, currentSearch);
-        });
-    });
-
-    document.getElementById('student-search-input').addEventListener('input', (e) => {
-        currentSearch = e.target.value;
-        renderMembers(currentFilter, currentSearch);
-    });
-});
-
-// Immediate first render
-renderMembers('all');
-</script>
 
 <!-- Interactive Admin Control Center Modal -->
 <div class="modal-overlay" id="admin-modal">
@@ -861,7 +660,93 @@ renderMembers('all');
     </div>
 </div>
 
+<!-- Interactive Client-Side Script for Filtering and Modal -->
 <script>
+function openStaticModal(name, degreeLabel, badgeClass, major, photo, thesis, interests, supervisor, email, scholar) {
+    const modal = document.getElementById('member-modal');
+    const body = document.getElementById('member-modal-body');
+    if (!modal || !body) return;
+
+    body.innerHTML = `
+        <img class="member-modal-avatar" src="research_portal/uploads/${photo}" alt="${name}" onerror="this.src='research_portal/uploads/default.png'" style="width: 140px; height: 170px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-color);">
+        <div style="flex: 1; min-width: 250px;">
+            <span class="student-degree-badge ${badgeClass}" style="display: inline-block; margin-bottom: 8px;">${degreeLabel}</span>
+            <h2 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 6px;">${name}</h2>
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 14px;">🎓 رشته: ${major}</p>
+            
+            <p style="margin-bottom: 10px; color: var(--text-secondary);">
+                <strong>استاد راهنما: </strong>${supervisor}
+            </p>
+            <p style="margin-bottom: 14px; color: var(--text-secondary);">
+                <strong>ایمیل: </strong><a href="mailto:${email}" style="color: var(--accent-blue);">${email}</a>
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 12px;">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">📑 عنوان پایان‌نامه / رساله:</strong>
+                <span style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">${thesis}</span>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-sm);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">🔬 زمینه‌های پژوهشی:</strong>
+                <span style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">${interests}</span>
+            </div>
+            
+            ${scholar ? `<div style="margin-top: 16px;"><a href="${scholar}" target="_blank" class="btn btn-primary btn-sm">🎓 مشاهده پروفایل گوگل اسکالر</a></div>` : ''}
+        </div>
+    `;
+
+    modal.classList.add('active');
+}
+
+function filterMembers() {
+    const activeTab = document.querySelector('.student-filter-tab.active');
+    const filter = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+    const query = (document.getElementById('student-search-input')?.value || '').trim().toLowerCase();
+    const cards = document.querySelectorAll('.student-card-item');
+    const noMsg = document.getElementById('no-students-msg');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const degree = card.getAttribute('data-degree') || '';
+        const isAlumni = card.getAttribute('data-graduated') === 'true';
+        const searchText = (card.getAttribute('data-search') || '').toLowerCase() + ' ' + card.textContent.toLowerCase();
+
+        let matchCategory = false;
+        if (filter === 'all') matchCategory = true;
+        else if (filter === 'phd') matchCategory = (degree === 'phd' && !isAlumni);
+        else if (filter === 'msc') matchCategory = (degree === 'msc' && !isAlumni);
+        else if (filter === 'alumni') matchCategory = isAlumni;
+
+        const matchSearch = !query || searchText.includes(query);
+
+        if (matchCategory && matchSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    if (noMsg) {
+        noMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.student-filter-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.student-filter-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterMembers();
+        });
+    });
+
+    const searchInput = document.getElementById('student-search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', filterMembers);
+    }
+});
+
 function openAdminModal() {
     const modal = document.getElementById('admin-modal');
     if (modal) modal.classList.add('active');
@@ -885,6 +770,6 @@ function handleAdminLogout() {
 }
 </script>
 
-<script src="research_portal/js/main.js?v=4"></script>
+<script src="research_portal/js/main.js?v=5"></script>
 </body>
 </html>
