@@ -298,6 +298,118 @@
     </div>
 </footer>
 
-<script src="research_portal/js/main.js"></script>
+<!-- Interactive Admin Control Center Modal -->
+<div class="modal-overlay" id="admin-modal">
+    <div class="modal-card" style="max-width: 780px; width: 94%;">
+        <button class="modal-close" type="button" onclick="document.getElementById('admin-modal').classList.remove('active')">✕</button>
+        
+        <div id="admin-login-view">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="font-size: 2.6rem; margin-bottom: 8px;">🔐</div>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 6px;">ورود به پنل مدیریت آزمایشگاه</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">نام کاربری: <code>admin</code> | رمز عبور: <code>admin123</code></p>
+            </div>
+
+            <div id="admin-login-err" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center; font-size: 0.9rem;">
+                نام کاربری یا رمز عبور اشتباه است!
+            </div>
+
+            <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">نام کاربری (Username)</label>
+                    <input type="text" id="adm-user" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">رمز عبور (Password)</label>
+                    <input type="password" id="adm-pass" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin123" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-weight: 700;">
+                    ورود به سیستم (Sign In)
+                </button>
+            </form>
+        </div>
+
+        <div id="admin-dash-view" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px;">
+                <div>
+                    <h2 style="font-size: 1.4rem; color: var(--text-primary);">📊 پیشخوان مدیریت پرتال (Admin CMS)</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">خوش آمدید، مدیر سیستم | دسترسی به مدیریت اساتید، دانشجویان و مقالات</p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="handleAdminLogout()">🚪 خروج</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-cyan);">35</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">کل پژوهشگران</div>
+                </div>
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-purple);">9</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">دانشجوی دکتری</div>
+                </div>
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-blue);">22</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">دانشجوی ارشد</div>
+                </div>
+                <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-emerald);">4</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">فارغ‌التحصیل</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="alert('فرم افزودن دانشجو در نسخه پایگاه‌داده فعال است.')">➕ افزودن دانشجو</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="alert('فرم افزودن مقاله در نسخه پایگاه‌داده فعال است.')">📚 ثبت مقاله جدید</button>
+                <a href="team.html" class="btn btn-outline btn-sm">👥 مدیریت اعضا</a>
+            </div>
+
+            <div style="max-height: 240px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: right;">
+                    <thead>
+                        <tr style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
+                            <th style="padding: 10px;">نام پژوهشگر</th>
+                            <th style="padding: 10px;">مقطع</th>
+                            <th style="padding: 10px;">استاد راهنما</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">فائزه صفری</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">عارف عارف‌نیا</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">طاهره کرمی</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">سمانه خسروی</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر آرزو کامران</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">فاطمه خلوندی</td><td style="padding: 10px;">MSc</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">طیبه کریمی</td><td style="padding: 10px;">Alumni</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر آرزو کامران</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openAdminModal() {
+    const modal = document.getElementById('admin-modal');
+    if (modal) modal.classList.add('active');
+}
+function handleAdminLogin(e) {
+    if (e) e.preventDefault();
+    const user = document.getElementById('adm-user')?.value.trim();
+    const pass = document.getElementById('adm-pass')?.value.trim();
+    const err = document.getElementById('admin-login-err');
+    if (user === 'admin' && pass === 'admin123') {
+        if (err) err.style.display = 'none';
+        document.getElementById('admin-login-view').style.display = 'none';
+        document.getElementById('admin-dash-view').style.display = 'block';
+    } else {
+        if (err) err.style.display = 'block';
+    }
+}
+function handleAdminLogout() {
+    document.getElementById('admin-dash-view').style.display = 'none';
+    document.getElementById('admin-login-view').style.display = 'block';
+}
+</script>
+
+<script src="research_portal/js/main.js?v=4"></script>
 </body>
 </html>
