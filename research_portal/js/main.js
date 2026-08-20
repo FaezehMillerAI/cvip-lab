@@ -1,11 +1,11 @@
 /**
  * ==========================================================================
- * CVIP LAB - INTERACTIVE JAVASCRIPT & NEURAL VISION ANIMATION
+ * CVIP LAB - INTERACTIVE JAVASCRIPT & HIGH-TECH NEURAL CANVAS ENGINES
  * Computer Vision & Image Processing Research Laboratory
  * ==========================================================================
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function bootApp() {
   initTheme();
   initVisionCanvas();
   initFacultyCanvas();
@@ -19,7 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initStudentFilters();
   initPublicationSearch();
   initModals();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootApp);
+} else {
+  bootApp();
+}
+window.addEventListener('load', bootApp);
 
 /* ==========================================================================
    Theme Switcher (Dark / Light)
@@ -32,13 +39,13 @@ function initTheme() {
   updateThemeIcons(savedTheme);
 
   themeToggles.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.onclick = () => {
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('cvip_theme', newTheme);
       updateThemeIcons(newTheme);
-    });
+    };
   });
 }
 
@@ -55,16 +62,23 @@ function updateThemeIcons(theme) {
    ========================================================================== */
 function initVisionCanvas() {
   const canvas = document.getElementById('vision-canvas');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let particles = [];
-  let mouse = { x: null, y: null, radius: 140 };
+  let mouse = { x: null, y: null, radius: 150 };
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 650;
+    if (particles.length === 0 && width > 0 && height > 0) {
+      const count = Math.min(Math.floor((width * height) / 12000), 75) || 45;
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
   }
 
   window.addEventListener('resize', resize);
@@ -81,12 +95,10 @@ function initVisionCanvas() {
     mouse.y = null;
   });
 
-  const particleCount = Math.min(Math.floor((width * height) / 12000), 75);
-
   class Particle {
     constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
+      this.x = Math.random() * (width || window.innerWidth);
+      this.y = Math.random() * (height || 650);
       this.vx = (Math.random() - 0.5) * 0.9;
       this.vy = (Math.random() - 0.5) * 0.9;
       this.radius = Math.random() * 2.2 + 1.2;
@@ -138,11 +150,12 @@ function initVisionCanvas() {
     }
   }
 
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
+  resize();
 
   function animate() {
+    if (width === 0 || height === 0 || particles.length === 0) {
+      resize();
+    }
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < particles.length; i++) {
@@ -179,17 +192,32 @@ function initVisionCanvas() {
    ========================================================================== */
 function initFacultyCanvas() {
   const canvas = document.getElementById('canvas-faculty');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let mouse = { x: null, y: null };
   let angle = 0;
+  const nodes = [];
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
+    if (nodes.length === 0 && width > 0) {
+      for (let i = 0; i < 35; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          radius: Math.random() * 2 + 1,
+          color: i % 2 === 0 ? '#38bdf8' : '#c084fc'
+        });
+      }
+    }
   }
+
   window.addEventListener('resize', resize);
   resize();
 
@@ -199,46 +227,32 @@ function initFacultyCanvas() {
     mouse.y = e.clientY - rect.top;
   });
 
-  const nodes = [];
-  for (let i = 0; i < 35; i++) {
-    nodes.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.7,
-      vy: (Math.random() - 0.5) * 0.7,
-      radius: Math.random() * 2 + 1,
-      color: i % 2 === 0 ? '#38bdf8' : '#c084fc'
-    });
-  }
-
   function animate() {
+    if (width === 0 || height === 0 || nodes.length === 0) resize();
     ctx.clearRect(0, 0, width, height);
     angle += 0.015;
 
     const core1 = { x: width * 0.3, y: height * 0.5 };
     const core2 = { x: width * 0.7, y: height * 0.5 };
 
-    // Core 1 Pulsing Rings (Cyan)
     [30, 60, 90].forEach((r, idx) => {
       const currentR = r + Math.sin(angle + idx) * 8;
       ctx.beginPath();
-      ctx.arc(core1.x, core1.y, currentR, 0, Math.PI * 2);
+      ctx.arc(core1.x, core1.y, Math.max(1, currentR), 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(56, 189, 248, ${0.25 - idx * 0.07})`;
       ctx.lineWidth = 1.2;
       ctx.stroke();
     });
 
-    // Core 2 Pulsing Rings (Purple)
     [30, 60, 90].forEach((r, idx) => {
       const currentR = r + Math.cos(angle + idx) * 8;
       ctx.beginPath();
-      ctx.arc(core2.x, core2.y, currentR, 0, Math.PI * 2);
+      ctx.arc(core2.x, core2.y, Math.max(1, currentR), 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(192, 132, 252, ${0.25 - idx * 0.07})`;
       ctx.lineWidth = 1.2;
       ctx.stroke();
     });
 
-    // Connecting Synaptic Bridge between cores
     ctx.beginPath();
     ctx.moveTo(core1.x, core1.y);
     ctx.bezierCurveTo(
@@ -250,7 +264,6 @@ function initFacultyCanvas() {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Floating Nodes
     nodes.forEach(n => {
       n.x += n.vx;
       n.y += n.vy;
@@ -275,7 +288,6 @@ function initFacultyCanvas() {
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Connect to nearest core
       const targetCore = n.x < width / 2 ? core1 : core2;
       const distToCore = Math.sqrt((n.x - targetCore.x)**2 + (n.y - targetCore.y)**2);
       if (distToCore < 180) {
@@ -298,17 +310,18 @@ function initFacultyCanvas() {
    ========================================================================== */
 function initResearchCanvas() {
   const canvas = document.getElementById('canvas-research');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let laserY = 0;
   let laserSpeed = 1.2;
   let mouse = { x: null, y: null };
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
   }
   window.addEventListener('resize', resize);
   resize();
@@ -326,9 +339,9 @@ function initResearchCanvas() {
   ];
 
   function animate() {
+    if (width === 0 || height === 0) resize();
     ctx.clearRect(0, 0, width, height);
 
-    // Matrix Grid
     const gridSize = 45;
     ctx.strokeStyle = 'rgba(56, 189, 248, 0.06)';
     ctx.lineWidth = 1;
@@ -345,7 +358,6 @@ function initResearchCanvas() {
       ctx.stroke();
     }
 
-    // Moving Laser Line
     laserY += laserSpeed;
     if (laserY > height || laserY < 0) laserSpeed *= -1;
 
@@ -363,7 +375,6 @@ function initResearchCanvas() {
     ctx.lineTo(width, laserY);
     ctx.stroke();
 
-    // AI Bounding Boxes
     scanBoxes.forEach(b => {
       const bx = b.x * width;
       const by = b.y * height;
@@ -371,7 +382,6 @@ function initResearchCanvas() {
       ctx.lineWidth = 1.2;
       ctx.strokeRect(bx, by, b.w, b.h);
 
-      // Corner markers
       const s = 6;
       ctx.fillStyle = b.color;
       ctx.fillRect(bx - 2, by - 2, s, 2);
@@ -383,7 +393,6 @@ function initResearchCanvas() {
       ctx.fillText(b.label, bx + 4, by - 6);
     });
 
-    // Mouse Laser Crosshair
     if (mouse.x !== null) {
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
       ctx.setLineDash([4, 4]);
@@ -412,16 +421,33 @@ function initResearchCanvas() {
    ========================================================================== */
 function initTeamCanvas() {
   const canvas = document.getElementById('canvas-team');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let mouse = { x: null, y: null, radius: 160 };
+  const scholars = [];
+  const colors = ['#a855f7', '#38bdf8', '#34d399', '#f59e0b'];
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
+    if (scholars.length === 0 && width > 0) {
+      for (let i = 0; i < 55; i++) {
+        scholars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          radius: Math.random() * 2.5 + 1.2,
+          color: colors[i % colors.length],
+          pulse: Math.random() * Math.PI
+        });
+      }
+    }
   }
+
   window.addEventListener('resize', resize);
   resize();
 
@@ -431,22 +457,8 @@ function initTeamCanvas() {
     mouse.y = e.clientY - rect.top;
   });
 
-  const scholars = [];
-  const colors = ['#a855f7', '#38bdf8', '#34d399', '#f59e0b'];
-
-  for (let i = 0; i < 55; i++) {
-    scholars.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.8,
-      vy: (Math.random() - 0.5) * 0.8,
-      radius: Math.random() * 2.5 + 1.2,
-      color: colors[i % colors.length],
-      pulse: Math.random() * Math.PI
-    });
-  }
-
   function animate() {
+    if (width === 0 || height === 0 || scholars.length === 0) resize();
     ctx.clearRect(0, 0, width, height);
 
     scholars.forEach(p => {
@@ -457,7 +469,6 @@ function initTeamCanvas() {
       if (p.x < 0 || p.x > width) p.vx *= -1;
       if (p.y < 0 || p.y > height) p.vy *= -1;
 
-      // Swirling Gravitational Pull
       if (mouse.x !== null) {
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
@@ -479,7 +490,6 @@ function initTeamCanvas() {
       ctx.shadowBlur = 0;
     });
 
-    // Constellation lines
     for (let i = 0; i < scholars.length; i++) {
       for (let j = i + 1; j < scholars.length; j++) {
         const dx = scholars[i].x - scholars[j].x;
@@ -507,35 +517,38 @@ function initTeamCanvas() {
    ========================================================================== */
 function initProjectsCanvas() {
   const canvas = document.getElementById('canvas-projects');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
+  const packets = [];
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
+    if (packets.length === 0 && width > 0) {
+      for (let i = 0; i < 24; i++) {
+        packets.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          speed: Math.random() * 2 + 1.2,
+          axis: Math.random() > 0.5 ? 'x' : 'y',
+          dir: Math.random() > 0.5 ? 1 : -1,
+          color: Math.random() > 0.5 ? '#38bdf8' : '#34d399',
+          size: Math.random() * 4 + 3
+        });
+      }
+    }
   }
+
   window.addEventListener('resize', resize);
   resize();
 
-  const packets = [];
-  for (let i = 0; i < 24; i++) {
-    packets.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      speed: Math.random() * 2 + 1.2,
-      axis: Math.random() > 0.5 ? 'x' : 'y',
-      dir: Math.random() > 0.5 ? 1 : -1,
-      color: Math.random() > 0.5 ? '#38bdf8' : '#34d399',
-      size: Math.random() * 4 + 3
-    });
-  }
-
   function animate() {
+    if (width === 0 || height === 0 || packets.length === 0) resize();
     ctx.clearRect(0, 0, width, height);
 
-    // Grid Circuit traces
     ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
     ctx.lineWidth = 1;
     const spacing = 60;
@@ -546,14 +559,12 @@ function initProjectsCanvas() {
       ctx.lineTo(x, height);
       ctx.stroke();
 
-      // Solder dots
       for (let y = 0; y < height; y += spacing) {
         ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
         ctx.fillRect(x - 2, y - 2, 4, 4);
       }
     }
 
-    // Moving Data Packets
     packets.forEach(p => {
       if (p.axis === 'x') {
         p.x += p.speed * p.dir;
@@ -588,16 +599,34 @@ function initProjectsCanvas() {
    ========================================================================== */
 function initPublicationsCanvas() {
   const canvas = document.getElementById('canvas-publications');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let mouse = { x: null, y: null };
+  const glyphs = ['Σ', '∫', '∇', 'λ', 'μ', 'Ω', 'θ', '∂', 'Ψ', 'f(x)', 'E=mc²', 'W·x+b'];
+  const symbols = [];
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
+    if (symbols.length === 0 && width > 0) {
+      for (let i = 0; i < 35; i++) {
+        symbols.push({
+          text: glyphs[i % glyphs.length],
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vy: Math.random() * 0.5 + 0.2,
+          vx: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 8 + 12,
+          opacity: Math.random() * 0.4 + 0.2,
+          color: i % 3 === 0 ? '#38bdf8' : (i % 3 === 1 ? '#c084fc' : '#818cf8')
+        });
+      }
+    }
   }
+
   window.addEventListener('resize', resize);
   resize();
 
@@ -607,23 +636,8 @@ function initPublicationsCanvas() {
     mouse.y = e.clientY - rect.top;
   });
 
-  const glyphs = ['Σ', '∫', '∇', 'λ', 'μ', 'Ω', 'θ', '∂', 'Ψ', 'f(x)', 'E=mc²', 'W·x+b'];
-  const symbols = [];
-
-  for (let i = 0; i < 35; i++) {
-    symbols.push({
-      text: glyphs[i % glyphs.length],
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vy: Math.random() * 0.5 + 0.2,
-      vx: (Math.random() - 0.5) * 0.3,
-      size: Math.random() * 8 + 12,
-      opacity: Math.random() * 0.4 + 0.2,
-      color: i % 3 === 0 ? '#38bdf8' : (i % 3 === 1 ? '#c084fc' : '#818cf8')
-    });
-  }
-
   function animate() {
+    if (width === 0 || height === 0 || symbols.length === 0) resize();
     ctx.clearRect(0, 0, width, height);
 
     symbols.forEach(s => {
@@ -633,7 +647,6 @@ function initPublicationsCanvas() {
       if (s.y < -20) s.y = height + 20;
       if (s.x < 0 || s.x > width) s.vx *= -1;
 
-      // Mouse Proximity Glow
       let scale = 1;
       let alpha = s.opacity;
       if (mouse.x !== null) {
@@ -663,15 +676,16 @@ function initPublicationsCanvas() {
    ========================================================================== */
 function initNewsCanvas() {
   const canvas = document.getElementById('canvas-news');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let waveOffset = 0;
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
   }
   window.addEventListener('resize', resize);
   resize();
@@ -682,10 +696,10 @@ function initNewsCanvas() {
   ];
 
   function animate() {
+    if (width === 0 || height === 0) resize();
     ctx.clearRect(0, 0, width, height);
     waveOffset += 0.04;
 
-    // Expanding Radar Ripples
     radars.forEach(rd => {
       rd.r += rd.speed;
       if (rd.r > rd.maxR) rd.r = 5;
@@ -700,14 +714,12 @@ function initNewsCanvas() {
       ctx.lineWidth = 1.4;
       ctx.stroke();
 
-      // Radar Beacon Center
       ctx.beginPath();
       ctx.arc(rx, ry, 4, 0, Math.PI * 2);
       ctx.fillStyle = '#38bdf8';
       ctx.fill();
     });
 
-    // Sine Waveforms
     ctx.beginPath();
     ctx.strokeStyle = 'rgba(129, 140, 248, 0.22)';
     ctx.lineWidth = 1.5;
@@ -728,16 +740,17 @@ function initNewsCanvas() {
    ========================================================================== */
 function initContactCanvas() {
   const canvas = document.getElementById('canvas-contact');
-  if (!canvas) return;
+  if (!canvas || canvas.dataset.initialized) return;
+  canvas.dataset.initialized = 'true';
 
   const ctx = canvas.getContext('2d');
-  let width, height;
+  let width = 0, height = 0;
   let rot = 0;
   let mouse = { x: null, y: null };
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth;
+    height = canvas.height = canvas.offsetHeight || canvas.parentElement?.offsetHeight || 380;
   }
   window.addEventListener('resize', resize);
   resize();
@@ -749,6 +762,7 @@ function initContactCanvas() {
   });
 
   function animate() {
+    if (width === 0 || height === 0) resize();
     ctx.clearRect(0, 0, width, height);
     rot += 0.008;
 
@@ -756,14 +770,12 @@ function initContactCanvas() {
     const cy = height * 0.5;
     const globeRadius = Math.min(width, height) * 0.38;
 
-    // Outer Glow Ring
     ctx.beginPath();
     ctx.arc(cx, cy, globeRadius, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
-    // Rotating Longitude Ellipses
     for (let i = 0; i < 6; i++) {
       const curAngle = rot + (i * Math.PI) / 6;
       const w = Math.cos(curAngle) * globeRadius;
@@ -775,10 +787,9 @@ function initContactCanvas() {
       ctx.stroke();
     }
 
-    // Latitude Rings
     [-0.6, -0.3, 0, 0.3, 0.6].forEach(offset => {
       const latY = cy + offset * globeRadius;
-      const latR = Math.sqrt(globeRadius**2 - (offset * globeRadius)**2);
+      const latR = Math.sqrt(Math.max(1, globeRadius**2 - (offset * globeRadius)**2));
 
       ctx.beginPath();
       ctx.ellipse(cx, latY, latR, latR * 0.3, 0, 0, Math.PI * 2);
@@ -787,7 +798,6 @@ function initContactCanvas() {
       ctx.stroke();
     });
 
-    // Orbiting Satellite Beacon
     const satAngle = rot * 2.5;
     const sx = cx + Math.cos(satAngle) * (globeRadius + 20);
     const sy = cy + Math.sin(satAngle) * ((globeRadius + 20) * 0.45);
@@ -813,20 +823,19 @@ function initMobileNav() {
   const menu = document.querySelector('.nav-menu');
 
   if (toggle && menu) {
-    toggle.addEventListener('click', (e) => {
+    toggle.onclick = (e) => {
       e.stopPropagation();
       const isActive = menu.classList.toggle('active');
       toggle.innerHTML = isActive ? '✕' : '☰';
-    });
+    };
 
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+      link.onclick = () => {
         menu.classList.remove('active');
         if (toggle) toggle.innerHTML = '☰';
-      });
+      };
     });
 
-    // Close when clicking outside
     document.addEventListener('click', (e) => {
       if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
         menu.classList.remove('active');
@@ -834,7 +843,6 @@ function initMobileNav() {
       }
     });
 
-    // Escape key closes menu and modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         menu.classList.remove('active');
@@ -899,210 +907,131 @@ function initStudentFilters() {
   }
 
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+    tab.onclick = () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       currentCategory = tab.getAttribute('data-filter') || 'all';
       filterCards();
-    });
+    };
   });
 
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
+    searchInput.oninput = (e) => {
       currentSearch = e.target.value.trim().toLowerCase();
       filterCards();
-    });
+    };
   }
 }
 
 /* ==========================================================================
-   Publications Search & Filter
+   Live Publications Search & Year Tabs
    ========================================================================== */
 function initPublicationSearch() {
+  const tabs = document.querySelectorAll('.pub-year-tab');
   const searchInput = document.getElementById('pub-search-input');
-  const pubItems = document.querySelectorAll('.pub-item');
+  const items = document.querySelectorAll('.pub-item');
 
-  if (!searchInput || !pubItems.length) return;
+  if (!items.length) return;
 
-  searchInput.addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
+  let activeYear = 'all';
+  let activeQuery = '';
+
+  function filterPubs() {
     let count = 0;
 
-    pubItems.forEach(item => {
+    items.forEach(item => {
+      const year = item.getAttribute('data-year') || '';
       const text = item.textContent.toLowerCase();
-      if (!q || text.includes(q)) {
-        item.style.display = 'flex';
+
+      const matchYear = activeYear === 'all' || year === activeYear;
+      const matchQuery = !activeQuery || text.includes(activeQuery);
+
+      if (matchYear && matchQuery) {
+        item.style.display = 'block';
         count++;
       } else {
         item.style.display = 'none';
       }
     });
 
-    const emptyMsg = document.getElementById('no-pubs-msg');
-    if (emptyMsg) {
-      emptyMsg.style.display = count === 0 ? 'block' : 'none';
+    const noPubs = document.getElementById('no-pubs-msg');
+    if (noPubs) {
+      noPubs.style.display = count === 0 ? 'block' : 'none';
     }
+  }
+
+  tabs.forEach(tab => {
+    tab.onclick = () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeYear = tab.getAttribute('data-year') || 'all';
+      filterPubs();
+    };
   });
+
+  if (searchInput) {
+    searchInput.oninput = (e) => {
+      activeQuery = e.target.value.trim().toLowerCase();
+      filterPubs();
+    };
+  }
 }
 
 /* ==========================================================================
-   Modals & BibTeX Exporter
+   Modals & Popups
    ========================================================================== */
 function initModals() {
-  // BibTeX Modal
-  const bibtexBtns = document.querySelectorAll('.btn-bibtex');
-  const bibtexModal = document.getElementById('bibtex-modal');
-  const bibtexCode = document.getElementById('bibtex-content');
-  const copyBtn = document.getElementById('btn-copy-bibtex');
-
-  if (bibtexBtns.length && bibtexModal && bibtexCode) {
-    bibtexBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const bib = btn.getAttribute('data-bibtex') || '';
-        bibtexCode.textContent = bib;
-        bibtexModal.classList.add('active');
-      });
-    });
-
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(bibtexCode.textContent).then(() => {
-          const orig = copyBtn.innerHTML;
-          copyBtn.innerHTML = '✓ Copied!';
-          setTimeout(() => { copyBtn.innerHTML = orig; }, 2000);
-        });
-      });
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+      closeBtn.onclick = () => modal.classList.remove('active');
     }
-  }
-
-  // Close Modals on close-button or backdrop click
-  document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
-    el.addEventListener('click', (e) => {
-      if (e.target === el || e.target.classList.contains('modal-close')) {
-        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      }
-    });
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    };
   });
-
-  initAdminModal();
 }
 
-/* ==========================================================================
-   Interactive Admin Modal CMS & Simulator
-   ========================================================================== */
 function initAdminModal() {
-  if (!document.getElementById('admin-modal')) {
-    const adminModalHtml = `
-    <div class="modal-overlay" id="admin-modal">
+  if (document.getElementById('admin-modal')) return;
+
+  const adminModalHtml = `
+  <div class="modal-overlay" id="admin-modal">
       <div class="modal-card" style="max-width: 780px; width: 94%;">
-        <button class="modal-close" type="button">✕</button>
-        
-        <div id="admin-login-view">
-          <div style="text-align: center; margin-bottom: 24px;">
-            <div style="font-size: 2.6rem; margin-bottom: 8px;">🔐</div>
-            <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 6px;">ورود به پنل مدیریت آزمایشگاه</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">نام کاربری: <code>admin</code> | رمز عبور: <code>admin123</code></p>
+          <button class="modal-close" type="button" onclick="document.getElementById('admin-modal').classList.remove('active')">✕</button>
+          <div id="admin-login-view">
+              <div style="text-align: center; margin-bottom: 24px;">
+                  <div style="font-size: 2.6rem; margin-bottom: 8px;">🔐</div>
+                  <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 6px;">ورود به پنل مدیریت آزمایشگاه</h2>
+                  <p style="color: var(--text-muted); font-size: 0.9rem;">نام کاربری: <code>admin</code> | رمز عبور: <code>admin123</code></p>
+              </div>
+              <div id="admin-login-err" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center; font-size: 0.9rem;">
+                  نام کاربری یا رمز عبور اشتباه است!
+              </div>
+              <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+                  <div class="form-group" style="margin-bottom: 16px;">
+                      <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">نام کاربری (Username)</label>
+                      <input type="text" id="adm-user" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 20px;">
+                      <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">رمز عبور (Password)</label>
+                      <input type="password" id="adm-pass" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin123" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-weight: 700;">
+                      ورود به سیستم (Sign In)
+                  </button>
+              </form>
           </div>
-
-          <div id="admin-login-err" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center; font-size: 0.9rem;">
-            نام کاربری یا رمز عبور اشتباه است!
-          </div>
-
-          <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
-            <div class="form-group" style="margin-bottom: 16px;">
-              <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">نام کاربری (Username)</label>
-              <input type="text" id="adm-user" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-              <label class="form-label" style="display: block; margin-bottom: 6px; font-weight: 600;">رمز عبور (Password)</label>
-              <input type="password" id="adm-pass" class="form-control" style="width: 100%; padding: 12px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: #fff;" value="admin123" required>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-weight: 700;">
-              ورود به سیستم (Sign In)
-            </button>
-          </form>
-        </div>
-
-        <div id="admin-dash-view" style="display: none;">
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px;">
-            <div>
-              <h2 style="font-size: 1.4rem; color: var(--text-primary);">📊 پیشخوان مدیریت پرتال (Admin CMS)</h2>
-              <p style="font-size: 0.85rem; color: var(--text-muted);">خوش آمدید، مدیر سیستم | دسترسی به مدیریت اساتید، دانشجویان و مقالات</p>
-            </div>
-            <button type="button" class="btn btn-outline btn-sm" onclick="handleAdminLogout()">🚪 خروج</button>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
-            <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
-              <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-cyan);">35</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">کل پژوهشگران</div>
-            </div>
-            <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
-              <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-purple);">9</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">دانشجوی دکتری</div>
-            </div>
-            <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
-              <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-blue);">22</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">دانشجوی ارشد</div>
-            </div>
-            <div style="background: var(--bg-primary); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; text-align: center;">
-              <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-emerald);">4</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">فارغ‌التحصیل</div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <button type="button" class="btn btn-primary btn-sm" onclick="alert('فرم افزودن دانشجو در نسخه پایگاه‌داده فعال است.')">➕ افزودن دانشجو</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="alert('فرم افزودن مقاله در نسخه پایگاه‌داده فعال است.')">📚 ثبت مقاله جدید</button>
-            <a href="team.html" class="btn btn-outline btn-sm">👥 مدیریت اعضا</a>
-          </div>
-
-          <div style="max-height: 240px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: right;">
-              <thead>
-                <tr style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
-                  <th style="padding: 10px;">نام پژوهشگر</th>
-                  <th style="padding: 10px;">مقطع</th>
-                  <th style="padding: 10px;">استاد راهنما</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">فائزه صفری</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">عارف عارف‌نیا</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">طاهره کرمی</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">سمانه خسروی</td><td style="padding: 10px;">PhD</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر آرزو کامران</td></tr>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">فاطمه خلوندی</td><td style="padding: 10px;">MSc</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر عبدالله چاله چاله</td></tr>
-                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; font-weight: 600;">طیبه کریمی</td><td style="padding: 10px;">Alumni</td><td style="padding: 10px; color: var(--accent-cyan);">دکتر آرزو کامران</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
-    </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', adminModalHtml);
-  }
-
-  // Bind close buttons again
-  const adminModal = document.getElementById('admin-modal');
-  if (adminModal) {
-    adminModal.querySelectorAll('.modal-close').forEach(b => {
-      b.addEventListener('click', () => adminModal.classList.remove('active'));
-    });
-    adminModal.addEventListener('click', (e) => {
-      if (e.target === adminModal) adminModal.classList.remove('active');
-    });
-  }
+  </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', adminModalHtml);
 }
 
-// Global functions accessible via onclick
 window.openAdminModal = function() {
   initAdminModal();
   const modal = document.getElementById('admin-modal');
-  if (modal) {
-    modal.classList.add('active');
-  }
+  if (modal) modal.classList.add('active');
 };
 
 window.handleAdminLogin = function(e) {
@@ -1128,4 +1057,3 @@ window.handleAdminLogout = function() {
   if (dashView) dashView.style.display = 'none';
   if (loginView) loginView.style.display = 'block';
 };
-
