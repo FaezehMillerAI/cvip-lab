@@ -174,21 +174,41 @@ function initVisionCanvas() {
 }
 
 /* ==========================================================================
-   Mobile Navigation
+   Mobile Navigation & Drawer
    ========================================================================== */
 function initMobileNav() {
   const toggle = document.querySelector('.mobile-toggle');
   const menu = document.querySelector('.nav-menu');
 
   if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = menu.classList.toggle('active');
+      toggle.innerHTML = isActive ? '✕' : '☰';
     });
 
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('active');
+        if (toggle) toggle.innerHTML = '☰';
       });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('active');
+        if (toggle) toggle.innerHTML = '☰';
+      }
+    });
+
+    // Escape key closes menu and modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        menu.classList.remove('active');
+        if (toggle) toggle.innerHTML = '☰';
+        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+      }
     });
   }
 }
