@@ -83,17 +83,16 @@ function initVisionCanvas() {
   let mouse = { x: null, y: null, radius: 150 };
 
   function updateSize() {
-    const parent = canvas.parentElement || document.body;
-    const w = parent.clientWidth || window.innerWidth;
-    const h = parent.clientHeight || 650;
-    if (w > 0 && h > 0 && (width !== w || height !== h)) {
+    const parent = canvas.parentElement || document.getElementById('hero') || document.body;
+    const w = Math.max(parent.offsetWidth || 0, parent.clientWidth || 0, window.innerWidth || 0, 1000);
+    const h = Math.max(parent.offsetHeight || 0, parent.clientHeight || 0, window.innerHeight || 0, 700);
+    if (width !== w || height !== h) {
       width = canvas.width = w;
       height = canvas.height = h;
-      if (particles.length === 0) {
-        const count = Math.min(Math.floor((width * height) / 11000), 70) || 45;
-        for (let i = 0; i < count; i++) {
-          particles.push(new Particle());
-        }
+    }
+    if (particles.length === 0 && width > 0 && height > 0) {
+      for (let i = 0; i < 55; i++) {
+        particles.push(new Particle());
       }
     }
   }
