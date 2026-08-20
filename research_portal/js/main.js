@@ -22,6 +22,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
+   Theme Switcher (Dark / Light)
+   ========================================================================== */
+function initTheme() {
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+  const savedTheme = localStorage.getItem('cvip_theme') || 'dark';
+
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcons(savedTheme);
+
+  themeToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('cvip_theme', newTheme);
+      updateThemeIcons(newTheme);
+    });
+  });
+}
+
+function updateThemeIcons(theme) {
+  const themeIcons = document.querySelectorAll('.theme-toggle');
+  themeIcons.forEach(btn => {
+    btn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+    btn.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+  });
+}
+
+/* ==========================================================================
    Interactive Neural Vision Canvas (Homepage: #vision-canvas)
    ========================================================================== */
 function initVisionCanvas() {
