@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آزمایشگاه پردازش تصویر و بینایی ماشین | Computer Vision & Image Processing Lab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="research_portal/css/modern-theme.css">
+    <style>
+        .nav-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .nav-feature-card {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-feature-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-cyan);
+            box-shadow: var(--shadow-glow);
+        }
+        .nav-card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(59, 130, 246, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+            border: 1px solid var(--border-glow);
+        }
+    </style>
+</head>
+<body>
+
+<!-- High-Tech Sticky Navbar -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-title" id="t-nav-brand">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                <span class="nav-brand-sub" id="t-nav-sub">دانشکده فنی و مهندسی - دانشگاه رازی</span>
+            </div>
+        </a>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active" id="t-menu-home">صفحه اصلی</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link" id="t-menu-faculty">اساتید راهنما</a></li>
+                <li class="nav-item"><a href="research.html" class="nav-link" id="t-menu-research">حوزه‌های پژوهشی</a></li>
+                <li class="nav-item"><a href="team.html" class="nav-link" id="t-menu-team">اعضای آزمایشگاه</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link" id="t-menu-projects">پروژه‌ها</a></li>
+                <li class="nav-item"><a href="publications.html" class="nav-link" id="t-menu-pubs">مقالات علمی</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link" id="t-menu-news">اخبار و رویدادها</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link" id="t-menu-contact">درباره ما و تماس</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <button type="button" class="lang-toggle" id="btn-toggle-language" title="English / فارسی">
+                🌐 English
+            </button>
+            <button type="button" class="theme-toggle" id="btn-toggle-theme" title="تغییر تم">
+                ☀️
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-open-admin" onclick="openAdminModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span id="t-nav-admin">پنل مدیریت</span>
+            </button>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- ==========================================================================
+     HERO SECTION
+     ========================================================================== -->
+<section class="hero-section" id="hero">
+    <canvas id="vision-canvas"></canvas>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="container hero-content">
+        <div class="hero-tag">
+            <span>⚡</span>
+            <span id="t-hero-tag">مرکز تحقیقات پیشرفته پردازش تصویر و هوش مصنوعی</span>
+        </div>
+
+        <h1 class="hero-title">
+            <span id="t-hero-title-1">پیشگام در پژوهش‌های </span>
+            <span class="gradient-text" id="t-hero-title-2">بینایی ماشین، یادگیری عمیق و پردازش تصویر</span>
+        </h1>
+
+        <p class="hero-desc" id="t-hero-desc">
+            آزمایشگاه پردازش تصویر و بینایی ماشین دانشگاه رازی؛ پیشرو در پژوهش‌های هوش مصنوعی پزشکی، سامانه‌های بینایی خودروهای خودران، مدل‌های زبانی چندوجهی و شتاب‌دهنده‌های سخت‌افزاری کم‌مصرف.
+        </p>
+
+        <div class="hero-actions">
+            <a href="research.html" class="btn btn-primary" id="t-hero-btn-1">
+                بررسی حوزه‌های پژوهشی
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="team.html" class="btn btn-secondary" id="t-hero-btn-2">اعضای آزمایشگاه</a>
+            <a href="publications.html" class="btn btn-outline" id="t-hero-btn-3">مقالات علمی</a>
+        </div>
+
+        <!-- Metrics -->
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">35+</div>
+                <div class="stat-label">پژوهشگران و دانشجویان</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9+</div>
+                <div class="stat-label">دانشجویان مقطع دکتری</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">26+</div>
+                <div class="stat-label">دانشجویان کارشناسی ارشد</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">مقالات و دستاوردهای علمی</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     PORTAL SECTIONS GRID (DEDICATED PAGES DIRECT ACCESS)
+     ========================================================================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-title-wrap">
+            <span class="section-badge">Portal Navigation</span>
+            <h2 class="section-title">بخش‌ها و صفحات اختصاصی آزمایشگاه</h2>
+            <p class="section-subtitle">دسترسی سریع به صفحات مستقل اساتید، پژوهش‌ها، اعضا، پروژه‌ها، مقالات و اخبار</p>
+        </div>
+
+        <div class="nav-cards-grid">
+            <!-- Faculty -->
+            <a href="faculty.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">👨‍🏫</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">اساتید راهنما و هدایت علمی</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">سوابق تحصیلی و دانشگاهی دکتر عبدالله چاله چاله و دکتر آرزو کامران، افتخارات علمی و رزومه پژوهشی.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده صفحه اساتید ←
+                </div>
+            </a>
+
+            <!-- Research -->
+            <a href="research.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">🔬</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">حوزه‌های پژوهشی و نوآوری</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">۶ محور کلیدی از جمله هوش مصنوعی پزشکی، مدل‌های چندوجهی VLM، بینایی خودروهای خودران و شتاب‌دهنده‌های FPGA.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده محورهای پژوهش ←
+                </div>
+            </a>
+
+            <!-- Team -->
+            <a href="team.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">👥</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">اعضای آزمایشگاه و دانشجویان</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">دایرکتوری کامل ۳۵+ دانشجوی دکتری، کارشناسی ارشد و فارغ‌التحصیلان به همراه فیلتر و جستجوی زنده.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده فهرست اعضا ←
+                </div>
+            </a>
+
+            <!-- Projects -->
+            <a href="projects.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">🚀</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">پروژه‌های تحقیقاتی و صنعتی</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">سامانه‌ها و پلتفرم‌های کاربردی در حال اجرا و تکمیل شده، تکنولوژی‌های مورد استفاده و پژوهشگران مجری.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده پروژه‌ها ←
+                </div>
+            </a>
+
+            <!-- Publications -->
+            <a href="publications.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">📚</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">مقالات و انتشارات علمی</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">کاتالوگ مقالات چاپ شده در IEEE TMI، Elsevier و کنفرانس‌ها با لینک DOI و کپی استناد BibTeX.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده مقالات علمی ←
+                </div>
+            </a>
+
+            <!-- News & Events -->
+            <a href="news.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">📰</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">اخبار، جلسات دفاع و رویدادها</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">اطلاعیه زمان دفاع رساله‌های دکتری و پایان‌نامه‌ها، اخبار پذیرش مقالات و کارگاه‌های آموزشی.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده رویدادها ←
+                </div>
+            </a>
+
+            <!-- About & Contact -->
+            <a href="contact.html" class="glass-card nav-feature-card">
+                <div>
+                    <div class="nav-card-icon">🏢</div>
+                    <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 8px;">درباره ما، امکانات و تماس</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">معرفی سرورهای GPU آزمایشگاه، تجهیزات پردازش لبه، موقعیت مکانی و فرم درخواست همکاری پژوهشی.</p>
+                </div>
+                <div style="margin-top: 18px; color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    مشاهده درباره ما و تماس ←
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================================================
+     FACULTY SPOTLIGHT
+     ========================================================================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; gap: 16px;">
+            <div>
+                <span class="section-badge">Faculty Spotlight</span>
+                <h2 class="section-title" style="margin-bottom: 6px;">اساتید راهنمای آزمایشگاه</h2>
+                <p class="section-subtitle" style="margin: 0;">هدایت علمی پروژه‌ها و راهنمایی دانشجویان تحصیلات تکمیلی</p>
+            </div>
+            <a href="faculty.html" class="btn btn-secondary btn-sm">مشاهده جزئیات کامل اساتید ←</a>
+        </div>
+
+        <div class="professors-grid">
+            <div class="glass-card prof-featured-card">
+                <div class="prof-img-wrap">
+                    <img src="research_portal/uploads/1773629261.jpg" alt="Dr. Abdolah Chalechale">
+                </div>
+                <div class="prof-info">
+                    <span class="prof-badge">دانشیار و مدیر آزمایشگاه</span>
+                    <h3 class="prof-name">دکتر عبدالله چاله چاله</h3>
+                    <p class="prof-title">دانشیار گروه مهندسی کامپیوتر و فناوری اطلاعات - دانشگاه رازی</p>
+                    <p class="prof-field">
+                        <strong>حوزه‌های تخصصی: </strong>
+                        <span>هوش مصنوعی، پردازش تصویر، یادگیری عمیق، پردازش زبان طبیعی چندوجهی و سیستم‌های توزیع‌شده</span>
+                    </p>
+                    <div class="prof-links">
+                        <a href="https://scholar.google.com/citations?user=ARw4FiUAAAAJ&hl=en" target="_blank" class="btn btn-primary btn-sm">🎓 Google Scholar</a>
+                        <a href="faculty.html" class="btn btn-outline btn-sm">📄 رزومه کامل</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card prof-featured-card">
+                <div class="prof-img-wrap">
+                    <img src="research_portal/uploads/1773630810.jpg" alt="Dr. Arezo Kamran">
+                </div>
+                <div class="prof-info">
+                    <span class="prof-badge">استادیار و عضو هیئت علمی</span>
+                    <h3 class="prof-name">دکتر آرزو کامران</h3>
+                    <p class="prof-title">استادیار گروه مهندسی کامپیوتر و فناوری اطلاعات - دانشگاه رازی</p>
+                    <p class="prof-field">
+                        <strong>حوزه‌های تخصصی: </strong>
+                        <span>معماری سیستم‌های کامپیوتری، محاسبات تقریبی، طراحی و آزمون سیستم‌های دیجیتال، هوش مصنوعی لبه</span>
+                    </p>
+                    <div class="prof-links">
+                        <a href="https://scholar.google.com/citations?user=M_s3_SQAAAAJ&hl=en" target="_blank" class="btn btn-primary btn-sm">🎓 Google Scholar</a>
+                        <a href="faculty.html" class="btn btn-outline btn-sm">📄 رزومه کامل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="nav-brand">
+                    <div class="nav-logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="nav-brand-title">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                </div>
+                <p class="footer-brand-desc">
+                    مرکز تحقیقات پیشرفته در حوزه بینایی ماشین، یادگیری عمیق، پردازش تصویر، سیستم‌های چندوجهی و شتاب‌دهنده‌های سخت‌افزاری هوش مصنوعی در دانشگاه رازی.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">صفحات وب‌سایت</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">صفحه اصلی</a></li>
+                    <li><a href="faculty.html">اساتید راهنما</a></li>
+                    <li><a href="research.html">حوزه‌های پژوهشی</a></li>
+                    <li><a href="team.html">اعضای آزمایشگاه</a></li>
+                    <li><a href="projects.html">پروژه‌های پژوهشی</a></li>
+                    <li><a href="publications.html">مقالات علمی</a></li>
+                    <li><a href="news.html">اخبار و رویدادها</a></li>
+                    <li><a href="contact.html">درباره ما و تماس</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">محورهای پژوهشی</h4>
+                <ul class="footer-links">
+                    <li><a href="research.html">پردازش تصویر پزشکی</a></li>
+                    <li><a href="research.html">بینایی ماشین و خودرو خودران</a></li>
+                    <li><a href="research.html">مدل‌های زبانی چندوجهی</a></li>
+                    <li><a href="research.html">شتاب‌دهنده‌های سخت‌افزاری</a></li>
+                    <li><a href="research.html">مرمت هوشمند آثار تاریخی</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">ارتباط با آزمایشگاه</h4>
+                <ul class="footer-links">
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📍 کرمانشاه، طاق‌بستان، دانشگاه رازی، دانشکده مهندسی، گروه کامپیوتر</li>
+                    <li><a href="mailto:chalechale@razi.ac.ir">✉️ chalechale@razi.ac.ir</a></li>
+                    <li><a href="mailto:Kamran@razi.ac.ir">✉️ Kamran@razi.ac.ir</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                © ۱۴۰۵ آزمایشگاه پردازش تصویر و بینایی ماشین دانشگاه رازی. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="research_portal/js/main.js"></script>
+</body>
+</html>

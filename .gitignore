@@ -1,0 +1,12 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node / Scratch
+node_modules/
+*.log
+
+# Editor directories
+.vscode/
+.idea/

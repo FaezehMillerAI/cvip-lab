@@ -1,0 +1,4 @@
+<?php
+header("Location: team.php");
+exit;
+?>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حوزه‌های پژوهشی و نوآوری | آزمایشگاه پردازش تصویر و بینایی ماشین</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="research_portal/css/modern-theme.css">
+    <style>
+        .page-header {
+            padding: 130px 0 50px 0;
+            background: var(--gradient-hero);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .pillar-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 36px;
+            padding: 36px;
+            align-items: center;
+        }
+        @media (max-width: 860px) {
+            .pillar-card {
+                grid-template-columns: 1fr;
+            }
+        }
+        .pillar-visual {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(56, 189, 248, 0.1));
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- High-Tech Sticky Navbar -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-title" id="t-nav-brand">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                <span class="nav-brand-sub" id="t-nav-sub">دانشکده فنی و مهندسی - دانشگاه رازی</span>
+            </div>
+        </a>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link" id="t-menu-home">صفحه اصلی</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link" id="t-menu-faculty">اساتید راهنما</a></li>
+                <li class="nav-item"><a href="research.html" class="nav-link active" id="t-menu-research">حوزه‌های پژوهشی</a></li>
+                <li class="nav-item"><a href="team.html" class="nav-link" id="t-menu-team">اعضای آزمایشگاه</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link" id="t-menu-projects">پروژه‌ها</a></li>
+                <li class="nav-item"><a href="publications.html" class="nav-link" id="t-menu-pubs">مقالات علمی</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link" id="t-menu-news">اخبار و رویدادها</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link" id="t-menu-contact">درباره ما و تماس</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <button type="button" class="lang-toggle" id="btn-toggle-language" title="English / فارسی">
+                🌐 English
+            </button>
+            <button type="button" class="theme-toggle" id="btn-toggle-theme" title="تغییر تم">
+                ☀️
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-open-admin" onclick="openAdminModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span id="t-nav-admin">پنل مدیریت</span>
+            </button>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <span class="section-badge">Core Research Pillars</span>
+        <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 12px;">محورهای پژوهشی و نوآوری‌های علمی</h1>
+        <p class="hero-desc" style="max-width: 750px; margin: 0 auto;">
+            آزمایشگاه در تلاقی هوش مصنوعی، بینایی رایانه، پردازش تصویر و معماری سیستم‌های دیجیتال فعالیت می‌کند
+        </p>
+    </div>
+</div>
+
+<!-- Research Pillars Grid -->
+<section class="section">
+    <div class="container">
+        
+        <!-- Pillar 1 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">🧠</div>
+            <div>
+                <span class="tag" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); margin-bottom: 10px; display: inline-block;">Medical AI & Healthcare</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۱. پردازش تصویر پزشکی و هوش مصنوعی سلامت</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    طراحی مدل‌های یادگیری عمیق کانولوشنی ۳ بعدی و شبکه‌های توجه برای تشخیص زودهنگام آلزایمر از روی تصاویر MRI ساختاری، دسته‌بندی و تشریح ضایعات پوستی، تشخیص زودهنگام اوتیسم با شبکه‌های عصبی و آنالیز بیماری‌های ریوی و تومورهای کبدی.
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Alzheimer MRI 3D-CNNs</span>
+                    <span class="tag">Dermatology Skin Lesions</span>
+                    <span class="tag">Liver Tumor Diagnosis</span>
+                    <span class="tag">Autism Neural Screening</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">🤖</div>
+            <div>
+                <span class="tag" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); margin-bottom: 10px; display: inline-block;">Vision-Language & Multimodal AI</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۲. مدل‌های زبانی بزرگ چندوجهی و گراف دانش</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    ترکیب هوش مصنوعی چندوجهی بینایی-متن (Vision-Language Models) با گراف‌های دانش (Knowledge Graphs) جهت تفسیر خودکار و قابل اتکای تصاویر رادیولوژی، سامانه‌های کپشن‌نویسی تصاویر پزشکی و تحلیل احساسات متون فارسی.
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Multimodal LLMs (VLM)</span>
+                    <span class="tag">Medical Knowledge Graphs</span>
+                    <span class="tag">Persian NLP & Sentiment</span>
+                    <span class="tag">Clinical Reasoning</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">🚗</div>
+            <div>
+                <span class="tag" style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); margin-bottom: 10px; display: inline-block;">Autonomous Vision & Edge AI</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۳. بینایی ماشین و خودروهای خودران</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    سامانه‌های بی‌درنگ تشخیص حواس‌پرتی، خستگی و خواب‌آلودگی راننده خودرو با ترانسفورمرهای بینایی و شبکه‌های زمانی عمیق، به همراه الگوریتم‌های بازشناسی بلادرنگ علائم ترافیکی و ردیابی موانع جاده‌ای روی پردازنده‌های لبه (Edge Devices).
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Driver Distraction Monitoring</span>
+                    <span class="tag">Traffic Sign Recognition</span>
+                    <span class="tag">Vision Transformers (ViT)</span>
+                    <span class="tag">Real-Time Jetson Inference</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">🏛️</div>
+            <div>
+                <span class="tag" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 10px; display: inline-block;">Generative AI & Cultural Heritage</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۴. مرمت هوشمند آثار و بناهای تاریخی</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    استفاده از شبکه‌های عصبی مولد پیشرفته (Generative Adversarial Networks & Diffusion Models) برای بازسازی و Inpainting هوشمند کتیبه‌های تاریخی فرسوده، مرمت خودکار بناها با حفظ هندسه و خطوط لبه معماری و تشخیص اصالت اسناد تاریخی.
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Deep Neural Inpainting</span>
+                    <span class="tag">Historical Texture Synthesis</span>
+                    <span class="tag">Edge-Preserving GANs</span>
+                    <span class="tag">Monument Restoration</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">⚡</div>
+            <div>
+                <span class="tag" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); margin-bottom: 10px; display: inline-block;">Hardware Acceleration & Approximate Computing</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۵. محاسبات تقریبی و شتاب‌دهنده‌های سخت‌افزاری</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    طراحی و پیاده‌سازی تراشه‌های دیجیتال و بردهای FPGA با استفاده از واحدهای محاسباتی تقریبی (Approximate Adders & Multipliers) جهت کاهش مصرف توان و تاخیر محاسباتی در شتاب‌بخشی استنتاج شبکه‌های یادگیری عمیق در اینترنت اشیاء.
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Approximate Adders / ALUs</span>
+                    <span class="tag">Energy-Delay Optimization</span>
+                    <span class="tag">FPGA / ASIC Accelerators</span>
+                    <span class="tag">Digital Testing & Verification</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="glass-card pillar-card">
+            <div class="pillar-visual">🔍</div>
+            <div>
+                <span class="tag" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; margin-bottom: 10px; display: inline-block;">Industrial Vision & Quality Inspection</span>
+                <h2 style="font-size: 1.6rem; color: var(--text-primary); margin-bottom: 10px;">۶. بینایی صنعتی و کنترل کیفی خودکار</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+                    سامانه‌های هوشمند بینایی ماشین جهت بازرسی کیفی بدون تخریب در خطوط تولید پیوسته، شناسایی خودکار عیوب چوب و الوار، تشخیص ناهنجاری در داده‌های مالی و تحلیل هوشمند شبکه‌های صنعتی.
+                </p>
+                <div class="research-tags">
+                    <span class="tag">Wood Defect Detection</span>
+                    <span class="tag">Surface Anomaly Segmentation</span>
+                    <span class="tag">Continuous Quality Control</span>
+                    <span class="tag">Automated Optical Inspection</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="nav-brand">
+                    <div class="nav-logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="nav-brand-title">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                </div>
+                <p class="footer-brand-desc">
+                    مرکز تحقیقات پیشرفته در حوزه بینایی ماشین، یادگیری عمیق، پردازش تصویر، سیستم‌های چندوجهی و شتاب‌دهنده‌های سخت‌افزاری هوش مصنوعی در دانشگاه رازی.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">صفحات وب‌سایت</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">صفحه اصلی</a></li>
+                    <li><a href="faculty.html">اساتید راهنما</a></li>
+                    <li><a href="research.html">حوزه‌های پژوهشی</a></li>
+                    <li><a href="team.html">اعضای آزمایشگاه</a></li>
+                    <li><a href="projects.html">پروژه‌های پژوهشی</a></li>
+                    <li><a href="publications.html">مقالات علمی</a></li>
+                    <li><a href="news.html">اخبار و رویدادها</a></li>
+                    <li><a href="contact.html">درباره ما و تماس</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">محورهای پژوهشی</h4>
+                <ul class="footer-links">
+                    <li><a href="research.html">پردازش تصویر پزشکی</a></li>
+                    <li><a href="research.html">بینایی ماشین و خودرو خودران</a></li>
+                    <li><a href="research.html">مدل‌های زبانی چندوجهی</a></li>
+                    <li><a href="research.html">شتاب‌دهنده‌های سخت‌افزاری</a></li>
+                    <li><a href="research.html">مرمت هوشمند آثار تاریخی</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">ارتباط با آزمایشگاه</h4>
+                <ul class="footer-links">
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📍 کرمانشاه، طاق‌بستان، دانشگاه رازی، دانشکده مهندسی، گروه کامپیوتر</li>
+                    <li><a href="mailto:chalechale@razi.ac.ir">✉️ chalechale@razi.ac.ir</a></li>
+                    <li><a href="mailto:Kamran@razi.ac.ir">✉️ Kamran@razi.ac.ir</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                © ۱۴۰۵ آزمایشگاه پردازش تصویر و بینایی ماشین دانشگاه رازی. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="research_portal/js/main.js"></script>
+</body>
+</html>

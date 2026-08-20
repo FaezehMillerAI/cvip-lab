@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروژه‌های پژوهشی | آزمایشگاه پردازش تصویر و بینایی ماشین</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="research_portal/css/modern-theme.css">
+    <style>
+        .page-header {
+            padding: 130px 0 50px 0;
+            background: var(--gradient-hero);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<!-- High-Tech Sticky Navbar -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-title" id="t-nav-brand">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                <span class="nav-brand-sub" id="t-nav-sub">دانشکده فنی و مهندسی - دانشگاه رازی</span>
+            </div>
+        </a>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link" id="t-menu-home">صفحه اصلی</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link" id="t-menu-faculty">اساتید راهنما</a></li>
+                <li class="nav-item"><a href="research.html" class="nav-link" id="t-menu-research">حوزه‌های پژوهشی</a></li>
+                <li class="nav-item"><a href="team.html" class="nav-link" id="t-menu-team">اعضای آزمایشگاه</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link active" id="t-menu-projects">پروژه‌ها</a></li>
+                <li class="nav-item"><a href="publications.html" class="nav-link" id="t-menu-pubs">مقالات علمی</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link" id="t-menu-news">اخبار و رویدادها</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link" id="t-menu-contact">درباره ما و تماس</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <button type="button" class="lang-toggle" id="btn-toggle-language" title="English / فارسی">
+                🌐 English
+            </button>
+            <button type="button" class="theme-toggle" id="btn-toggle-theme" title="تغییر تم">
+                ☀️
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-open-admin" onclick="openAdminModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span id="t-nav-admin">پنل مدیریت</span>
+            </button>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <span class="section-badge">Featured Innovations</span>
+        <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 12px;">پروژه‌های پژوهشی و صنعتی آزمایشگاه</h1>
+        <p class="hero-desc" style="max-width: 750px; margin: 0 auto;">
+            طرح‌ها، پلتفرم‌ها و پروتوتایپ‌های توسعه‌یافته بر اساس پایان‌نامه‌های تحصیلات تکمیلی و سفارش‌های تحقیقاتی
+        </p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        🧠
+                    </div>
+                    <span class="project-status-tag status-active">در حال اجرا</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Medical AI & Multimodal LLMs</div>
+                    <h3 class="project-title">مدل‌های زبانی بزرگ چندوجهی برای پشتیبانی از تصمیم‌گیری‌های پزشکی</h3>
+                    <p class="project-desc">توسعه پلتفرم هوش مصنوعی چندوجهی تلفیق‌کننده تصاویر رادیولوژی پزشکی، گزارش‌های بالینی و گراف‌های دانش زیست‌پزشکی جهت تشخیص خودکار و ارائه تبیین بالینی برای پزشکان.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Vision-LLaVA</span>
+                        <span class="tech-tag">Knowledge Graphs</span>
+                        <span class="tech-tag">BioBERT</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگر: فائزه صفری (دانشجوی دکتری)</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر عبدالله چاله چاله</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        🚗
+                    </div>
+                    <span class="project-status-tag status-active">در حال اجرا</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Computer Vision & Edge AI</div>
+                    <h3 class="project-title">سامانه هوشمند پایش خواب‌آلودگی و حواس‌پرتی راننده با بینایی ماشین</h3>
+                    <p class="project-desc">سامانه بی‌درنگ بینایی لبه مبتنی بر ترانسفورمرهای بینایی و شبکه‌های کانولوشنی جهت تشخیص انحراف دید، خواب‌آلودگی، بسته‌شدن پلک و رفتارهای پرخطر رانندگان با دوربین‌های مادون‌قرمز.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">YOLOv10</span>
+                        <span class="tech-tag">TensorRT</span>
+                        <span class="tech-tag">Jetson Nano</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگر: سمیرا کریمی (کارشناسی ارشد)</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر عبدالله چاله چاله</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        🏛️
+                    </div>
+                    <span class="project-status-tag status-active">در حال اجرا</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Generative AI & Image Processing</div>
+                    <h3 class="project-title">سامانه مرمت هوشمند آثار و بناهای تاریخی با شبکه‌های عصبی</h3>
+                    <p class="project-desc">چارچوب هوش مصنوعی بازسازی بافت‌ها و کتیبه‌های آسیب‌دیده بناها و آثار تاریخی با استفاده از شبکه‌های مولد پیشرفته و حفظ خطوط لبه معماری کهن ایرانی.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Stable Diffusion</span>
+                        <span class="tech-tag">Neural Inpainting</span>
+                        <span class="tech-tag">Fast-SAM</span>
+                        <span class="tech-tag">PyTorch</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگر: سارا خزلی (کارشناسی ارشد)</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر عبدالله چاله چاله</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        ⚡
+                    </div>
+                    <span class="project-status-tag status-completed">تکمیل شده</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Hardware Acceleration & VLSI</div>
+                    <h3 class="project-title">شتاب‌دهنده‌های سخت‌افزاری کم‌مصرف یادگیری عمیق با محاسبات تقریبی</h3>
+                    <p class="project-desc">معماری‌های سفارشی تراشه‌های FPGA و ASIC با بلوک‌های محاسباتی تقریبی و مقیاس‌پذیر جهت کاهش چشمگیر توان مصرفی در پردازش تصویر روی لبه و اینترنت اشیاء.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">Vivado</span>
+                        <span class="tech-tag">FPGA</span>
+                        <span class="tech-tag">Approximate Adders</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگران: طیبه کریمی و رقیه مرادی</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر آرزو کامران</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        🫁
+                    </div>
+                    <span class="project-status-tag status-active">در حال اجرا</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Medical Diagnostics</div>
+                    <h3 class="project-title">تشخیص افتراقی بیماری‌های ریوی با یادگیری عمیق چندمقیاسه</h3>
+                    <p class="project-desc">طراحی شبکه کانولوشنی بهینه‌شده برای قطعه‌بندی توده‌ها و آسیب‌های بافت ریه از تصاویر سی‌تی اسکن با دقت بالای ۹۶ درصد.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">U-Net</span>
+                        <span class="tech-tag">3D-CT</span>
+                        <span class="tech-tag">PyTorch</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگر: اکرم سلطان‌آبادی (کارشناسی ارشد)</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر عبدالله چاله چاله</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="glass-card project-card">
+                <div class="project-img-wrap">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(15, 23, 42, 0.8)); font-size: 3.5rem;">
+                        🪵
+                    </div>
+                    <span class="project-status-tag status-active">در حال اجرا</span>
+                </div>
+                <div class="project-body">
+                    <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px;">Industrial Vision</div>
+                    <h3 class="project-title">سامانه تشخیص عیوب سطحی چوب با پردازش تصویر بلادرنگ</h3>
+                    <p class="project-desc">سامانه بینایی صنعتی برای شناسایی گره‌ها، ترک‌ها و عیوب ساختاری در خطوط برش مکانیزه کارخانجات چوب و الوار.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Industrial Camera</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+                        <span>👤 پژوهشگر: شیوا چراغی (کارشناسی ارشد)</span>
+                        <span style="color: var(--accent-cyan);">استاد: دکتر عبدالله چاله چاله</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="nav-brand">
+                    <div class="nav-logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span class="nav-brand-title">آزمایشگاه پردازش تصویر و بینایی ماشین</span>
+                </div>
+                <p class="footer-brand-desc">
+                    مرکز تحقیقات پیشرفته در حوزه بینایی ماشین، یادگیری عمیق، پردازش تصویر، سیستم‌های چندوجهی و شتاب‌دهنده‌های سخت‌افزاری هوش مصنوعی در دانشگاه رازی.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">صفحات وب‌سایت</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">صفحه اصلی</a></li>
+                    <li><a href="faculty.html">اساتید راهنما</a></li>
+                    <li><a href="research.html">حوزه‌های پژوهشی</a></li>
+                    <li><a href="team.html">اعضای آزمایشگاه</a></li>
+                    <li><a href="projects.html">پروژه‌های پژوهشی</a></li>
+                    <li><a href="publications.html">مقالات علمی</a></li>
+                    <li><a href="news.html">اخبار و رویدادها</a></li>
+                    <li><a href="contact.html">درباره ما و تماس</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">محورهای پژوهشی</h4>
+                <ul class="footer-links">
+                    <li><a href="research.html">پردازش تصویر پزشکی</a></li>
+                    <li><a href="research.html">بینایی ماشین و خودرو خودران</a></li>
+                    <li><a href="research.html">مدل‌های زبانی چندوجهی</a></li>
+                    <li><a href="research.html">شتاب‌دهنده‌های سخت‌افزاری</a></li>
+                    <li><a href="research.html">مرمت هوشمند آثار تاریخی</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">ارتباط با آزمایشگاه</h4>
+                <ul class="footer-links">
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📍 کرمانشاه، طاق‌بستان، دانشگاه رازی، دانشکده مهندسی، گروه کامپیوتر</li>
+                    <li><a href="mailto:chalechale@razi.ac.ir">✉️ chalechale@razi.ac.ir</a></li>
+                    <li><a href="mailto:Kamran@razi.ac.ir">✉️ Kamran@razi.ac.ir</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                © ۱۴۰۵ آزمایشگاه پردازش تصویر و بینایی ماشین دانشگاه رازی. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="research_portal/js/main.js"></script>
+</body>
+</html>
