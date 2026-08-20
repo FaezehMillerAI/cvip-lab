@@ -42,7 +42,11 @@ if ($conn && !$conn->connect_error) {
         </div>
 
         <h1 class="hero-title">
-            <span class="gradient-text"><?= $is_rtl ? '«هر انسان، داستانی دارد؛ هر تخصص، جهانی.»' : '“Every human has a story; every expertise, a universe.”' ?></span>
+            <span class="gradient-text" style="display: inline-block;">
+                <?= $is_rtl 
+                    ? '<span style="display: block;">«هر انسان، داستانی دارد؛</span><span style="display: block;">هر تخصص، جهانی.»</span>' 
+                    : '<span style="display: block;">“Every human has a story;</span><span style="display: block;">every expertise, a universe.”</span>' ?>
+            </span>
         </h1>
 
         <p class="hero-desc">
