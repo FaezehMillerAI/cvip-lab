@@ -230,29 +230,27 @@ function initStudentFilters() {
     let visibleCount = 0;
 
     cards.forEach(card => {
-      const category = card.getAttribute('data-degree') || '';
-      const isAlumni = card.getAttribute('data-graduated') === '1';
-      const name = (card.getAttribute('data-name') || '').toLowerCase();
-      const interests = (card.getAttribute('data-interests') || '').toLowerCase();
-      const thesis = (card.getAttribute('data-thesis') || '').toLowerCase();
-      const supervisor = (card.getAttribute('data-supervisor') || '').toLowerCase();
+      const category = (card.getAttribute('data-degree') || '').toLowerCase();
+      const isAlumni = card.getAttribute('data-graduated') === '1' || 
+                       card.getAttribute('data-graduated') === 'true' || 
+                       category === 'alumni';
+      
+      const searchAttr = (card.getAttribute('data-search') || '').toLowerCase();
+      const cardText = card.textContent.toLowerCase();
+      const combinedSearch = searchAttr + ' ' + cardText;
 
       let categoryMatch = false;
       if (currentCategory === 'all') {
         categoryMatch = true;
       } else if (currentCategory === 'phd') {
-        categoryMatch = category.includes('PhD') && !isAlumni;
+        categoryMatch = (category === 'phd' || category.includes('phd')) && !isAlumni;
       } else if (currentCategory === 'msc') {
-        categoryMatch = category.includes('MSc') && !isAlumni;
+        categoryMatch = (category === 'msc' || category.includes('msc')) && !isAlumni;
       } else if (currentCategory === 'alumni') {
-        categoryMatch = isAlumni;
+        categoryMatch = isAlumni || category === 'alumni';
       }
 
-      const searchMatch = !currentSearch || 
-        name.includes(currentSearch) || 
-        interests.includes(currentSearch) || 
-        thesis.includes(currentSearch) || 
-        supervisor.includes(currentSearch);
+      const searchMatch = !currentSearch || combinedSearch.includes(currentSearch);
 
       if (categoryMatch && searchMatch) {
         card.style.display = 'flex';

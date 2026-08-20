@@ -100,15 +100,15 @@
         <!-- Filter & Search Bar -->
         <div class="filter-bar">
             <div class="filter-tabs">
-                <button type="button" class="filter-btn student-filter-tab active" data-filter="all">همه اعضا (۲۵+)</button>
-                <button type="button" class="filter-btn student-filter-tab" data-filter="phd">دانشجویان دکتری (۹)</button>
-                <button type="button" class="filter-btn student-filter-tab" data-filter="msc">دانشجویان ارشد (۱۲)</button>
-                <button type="button" class="filter-btn student-filter-tab" data-filter="alumni">فارغ‌التحصیلان (۴)</button>
+                <button type="button" class="filter-btn student-filter-tab active" data-filter="all" onclick="setStudentFilter('all', this)">همه اعضا (۲۵+)</button>
+                <button type="button" class="filter-btn student-filter-tab" data-filter="phd" onclick="setStudentFilter('phd', this)">دانشجویان دکتری (۹)</button>
+                <button type="button" class="filter-btn student-filter-tab" data-filter="msc" onclick="setStudentFilter('msc', this)">دانشجویان ارشد (۱۲)</button>
+                <button type="button" class="filter-btn student-filter-tab" data-filter="alumni" onclick="setStudentFilter('alumni', this)">فارغ‌التحصیلان (۴)</button>
             </div>
 
             <div class="search-input-wrap">
                 <span class="search-icon-pos">🔍</span>
-                <input type="text" id="student-search-input" placeholder="جستجوی نام دانشجو، موضوع پایان‌نامه یا علایق...">
+                <input type="text" id="student-search-input" oninput="setStudentFilter(null, null)" placeholder="جستجوی نام دانشجو، موضوع پایان‌نامه یا علایق...">
             </div>
         </div>
 
@@ -701,24 +701,34 @@ function openStaticModal(name, degreeLabel, badgeClass, major, photo, thesis, in
     modal.classList.add('active');
 }
 
-function filterMembers() {
+function setStudentFilter(category, clickedBtn) {
+    if (clickedBtn) {
+        document.querySelectorAll('.student-filter-tab').forEach(b => b.classList.remove('active'));
+        clickedBtn.classList.add('active');
+    }
+    
     const activeTab = document.querySelector('.student-filter-tab.active');
-    const filter = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+    const filter = category || (activeTab ? activeTab.getAttribute('data-filter') : 'all');
     const query = (document.getElementById('student-search-input')?.value || '').trim().toLowerCase();
     const cards = document.querySelectorAll('.student-card-item');
     const noMsg = document.getElementById('no-students-msg');
     let visibleCount = 0;
 
     cards.forEach(card => {
-        const degree = card.getAttribute('data-degree') || '';
-        const isAlumni = card.getAttribute('data-graduated') === 'true';
+        const degree = (card.getAttribute('data-degree') || '').toLowerCase();
+        const isAlumni = card.getAttribute('data-graduated') === 'true' || degree === 'alumni';
         const searchText = (card.getAttribute('data-search') || '').toLowerCase() + ' ' + card.textContent.toLowerCase();
 
         let matchCategory = false;
-        if (filter === 'all') matchCategory = true;
-        else if (filter === 'phd') matchCategory = (degree === 'phd' && !isAlumni);
-        else if (filter === 'msc') matchCategory = (degree === 'msc' && !isAlumni);
-        else if (filter === 'alumni') matchCategory = isAlumni;
+        if (filter === 'all') {
+            matchCategory = true;
+        } else if (filter === 'phd') {
+            matchCategory = (degree === 'phd') && !isAlumni;
+        } else if (filter === 'msc') {
+            matchCategory = (degree === 'msc') && !isAlumni;
+        } else if (filter === 'alumni') {
+            matchCategory = isAlumni;
+        }
 
         const matchSearch = !query || searchText.includes(query);
 
@@ -735,20 +745,8 @@ function filterMembers() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.student-filter-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.student-filter-tab').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterMembers();
-        });
-    });
-
-    const searchInput = document.getElementById('student-search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', filterMembers);
-    }
-});
+// Global alias for compatibility
+window.filterMembers = setStudentFilter;
 
 function openAdminModal() {
     const modal = document.getElementById('admin-modal');
@@ -773,6 +771,6 @@ function handleAdminLogout() {
 }
 </script>
 
-<script src="research_portal/js/main.js?v=5"></script>
+<script src="research_portal/js/main.js?v=6"></script>
 </body>
 </html>
