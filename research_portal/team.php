@@ -30,9 +30,14 @@ $alumni_count = count(array_filter($students_list, fn($s) => (int)$s['graduated'
 <div class="page-header" style="padding: 130px 0 50px 0; background: var(--gradient-hero); text-align: center; border-bottom: 1px solid var(--border-color);">
     <div class="container">
         <span class="section-badge">Scholars & Graduates</span>
-        <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 12px;">
+        <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 8px;">
             <?= $is_rtl ? 'اعضای آزمایشگاه و پژوهشگران' : 'Lab Members & Graduate Scholars' ?>
         </h1>
+        <div style="margin: 12px 0 16px 0;">
+            <span style="display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: var(--radius-full); padding: 8px 24px; font-size: 1.05rem; color: var(--accent-cyan); font-weight: 600; box-shadow: var(--shadow-glow); backdrop-filter: blur(8px);">
+                ✨ <?= $is_rtl ? '«هر انسان، داستانی دارد؛ هر تخصص، جهانی.»' : '“Every human has a story; every expertise, a universe.”' ?>
+            </span>
+        </div>
         <p class="hero-desc" style="max-width: 750px; margin: 0 auto;">
             <?= $is_rtl ? 'دانشجویان دکتری تخصصی، کارشناسی ارشد و فارغ‌التحصیلان برجسته آزمایشگاه پردازش تصویر و بینایی ماشین' : 'Doctoral researchers, master students, and alumni contributing to computer vision and machine intelligence.' ?>
         </p>

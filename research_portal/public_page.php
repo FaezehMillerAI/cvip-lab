@@ -52,6 +52,12 @@ if ($conn && !$conn->connect_error) {
                 : 'Pioneering innovative research in medical image computing, autonomous vehicle perception, multimodal vision-language models, and energy-efficient edge neural accelerators.' ?>
         </p>
 
+        <div style="margin-bottom: 26px;">
+            <span style="display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: var(--radius-full); padding: 8px 24px; font-size: 1.05rem; color: var(--accent-cyan); font-weight: 600; box-shadow: var(--shadow-glow); backdrop-filter: blur(8px);">
+                ✨ <?= $is_rtl ? '«هر انسان، داستانی دارد؛ هر تخصص، جهانی.»' : '“Every human has a story; every expertise, a universe.”' ?>
+            </span>
+        </div>
+
         <div class="hero-actions">
             <a href="research.php" class="btn btn-primary">
                 <?= $is_rtl ? 'بررسی حوزه‌های پژوهشی' : 'Explore Research Areas' ?>
