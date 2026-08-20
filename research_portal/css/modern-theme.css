@@ -938,6 +938,12 @@ html[dir="rtl"] .search-icon-pos {
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
+.badge-bsc {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-amber);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
 .student-name {
   font-size: 1.15rem;
   font-weight: 700;

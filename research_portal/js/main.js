@@ -886,6 +886,8 @@ function initStudentFilters() {
         categoryMatch = (category === 'phd' || category.includes('phd')) && !isAlumni;
       } else if (currentCategory === 'msc') {
         categoryMatch = (category === 'msc' || category.includes('msc')) && !isAlumni;
+      } else if (currentCategory === 'bsc') {
+        categoryMatch = (category === 'bsc' || category.includes('bsc')) && !isAlumni;
       } else if (currentCategory === 'alumni') {
         categoryMatch = isAlumni || category === 'alumni';
       }

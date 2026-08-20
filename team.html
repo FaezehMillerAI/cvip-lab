@@ -104,6 +104,7 @@
                 <button type="button" class="filter-btn student-filter-tab active" data-filter="all" onclick="setStudentFilter('all', this)">همه اعضا (۲۵+)</button>
                 <button type="button" class="filter-btn student-filter-tab" data-filter="phd" onclick="setStudentFilter('phd', this)">دانشجویان دکتری (۹)</button>
                 <button type="button" class="filter-btn student-filter-tab" data-filter="msc" onclick="setStudentFilter('msc', this)">دانشجویان ارشد (۱۲)</button>
+                <button type="button" class="filter-btn student-filter-tab" data-filter="bsc" onclick="setStudentFilter('bsc', this)">دانشجویان کارشناسی (۱)</button>
                 <button type="button" class="filter-btn student-filter-tab" data-filter="alumni" onclick="setStudentFilter('alumni', this)">فارغ‌التحصیلان (۴)</button>
             </div>
 
@@ -115,6 +116,24 @@
 
         <!-- Static Students Grid -->
         <div class="students-grid" id="students-grid-container">
+
+            <!-- Member 0: Mahroo Safari -->
+            <div class="glass-card student-card student-card-item" data-degree="bsc" data-graduated="false" data-search="مهرو صفری mahroo safari کارشناسی هوش مصنوعی مدل های بزرگ زبانی یادگیری عمیق بررسی ارزیابی و بهبود کارآیی مدل های زبانی بزرگ در ایمنی مصرف دارو llm medical دکتر عبدالله چاله چاله">
+                <img class="student-avatar" src="research_portal/uploads/mahroo_safari.jpg" alt="مهرو صفری" onerror="this.src='research_portal/uploads/default.png'">
+                <span class="student-degree-badge badge-bsc">دانشجوی کارشناسی</span>
+                <h4 class="student-name">مهرو صفری (Mahroo Safari)</h4>
+                <div class="student-major">مهندسی کامپیوتر (Computer Engineering)</div>
+                <div class="student-thesis">
+                    <strong>موضوع پروژه کارشناسی: </strong>بررسی، ارزیابی و بهبود کارآیی مدل‌های زبانی بزرگ در ایمنی مصرف دارو
+                </div>
+                <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 14px;">
+                    <strong>استاد راهنما: </strong>دکتر عبدالله چاله چاله
+                </div>
+                <div class="student-card-actions">
+                    <button type="button" class="btn btn-primary btn-sm" style="flex: 1;" onclick="openStaticModal('مهرو صفری (Mahroo Safari)', 'دانشجوی کارشناسی', 'badge-bsc', 'مهندسی کامپیوتر (Computer Engineering)', 'mahroo_safari.jpg', 'بررسی، ارزیابی و بهبود کارآیی مدل‌های زبانی بزرگ در ایمنی مصرف دارو', 'هوش مصنوعی، مدل‌های بزرگ زبانی، یادگیری عمیق (Artificial Intelligence, LLMs, Deep Learning)', 'دکتر عبدالله چاله چاله', 'safarimahrooce@gmail.com', '')">مشاهده مشخصات</button>
+                    <a href="mailto:safarimahrooce@gmail.com" class="btn btn-outline btn-sm">✉️</a>
+                </div>
+            </div>
 
             <!-- Member 1: Faezeh Safari -->
             <div class="glass-card student-card student-card-item" data-degree="phd" data-graduated="false" data-search="فائزه صفری faezeh safari هوش مصنوعی llm medical image knowledge graphs دکتر عبدالله چاله چاله">
@@ -727,6 +746,8 @@ function setStudentFilter(category, clickedBtn) {
             matchCategory = (degree === 'phd') && !isAlumni;
         } else if (filter === 'msc') {
             matchCategory = (degree === 'msc') && !isAlumni;
+        } else if (filter === 'bsc') {
+            matchCategory = (degree === 'bsc') && !isAlumni;
         } else if (filter === 'alumni') {
             matchCategory = isAlumni;
         }
