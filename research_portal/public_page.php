@@ -31,7 +31,6 @@ if ($conn && !$conn->connect_error) {
      HERO SECTION
      ========================================================================== -->
 <section class="hero-section" id="hero">
-    <canvas id="vision-canvas"></canvas>
     <div class="hero-glow-1"></div>
     <div class="hero-glow-2"></div>
 
