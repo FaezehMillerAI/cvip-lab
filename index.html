@@ -97,6 +97,7 @@
      HERO SECTION
      ========================================================================== -->
 <section class="hero-section" id="hero">
+    <canvas class="page-canvas" id="vision-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.95;"></canvas>
     <div class="hero-glow-1"></div>
     <div class="hero-glow-2"></div>
 
@@ -566,6 +567,113 @@ function handleAdminLogout() {
 }
 </script>
 
-<script src="research_portal/js/main.js"></script>
+<script src="research_portal/js/main.js?v=11"></script>
+<script>
+// Instant Homepage Vision Canvas Booster
+(function() {
+    const canvas = document.getElementById('vision-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = 0, height = 0, particles = [];
+    let mouse = { x: null, y: null, radius: 160 };
+
+    function fit() {
+        const parent = canvas.parentElement || document.getElementById('hero') || document.body;
+        width = canvas.width = Math.max(parent.offsetWidth || 0, window.innerWidth, 1000);
+        height = canvas.height = Math.max(parent.offsetHeight || 0, window.innerHeight, 750);
+        if (particles.length === 0) {
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 1.1,
+                    vy: (Math.random() - 0.5) * 1.1,
+                    radius: Math.random() * 2.2 + 1.2,
+                    color: Math.random() > 0.4 ? '#38bdf8' : '#818cf8',
+                    isBox: Math.random() > 0.85,
+                    boxSize: Math.random() * 26 + 18
+                });
+            }
+        }
+    }
+
+    window.addEventListener('resize', fit);
+    window.addEventListener('mousemove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        if (e.clientY >= r.top && e.clientY <= r.bottom && e.clientX >= r.left && e.clientX <= r.right) {
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+        } else {
+            mouse.x = null;
+            mouse.y = null;
+        }
+    });
+
+    fit();
+
+    function drawLoop() {
+        if (width === 0 || height === 0 || particles.length === 0) fit();
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 135) {
+                    ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - dist / 135) * 0.3})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            if (mouse.x !== null) {
+                const dx = mouse.x - p.x;
+                const dy = mouse.y - p.y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < mouse.radius && d > 0) {
+                    const f = (mouse.radius - d) / mouse.radius;
+                    p.x -= (dx / d) * f * 3.5;
+                    p.y -= (dy / d) * f * 3.5;
+                }
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p.color;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            if (p.isBox) {
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.38)';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(p.x - p.boxSize / 2, p.y - p.boxSize / 2, p.boxSize, p.boxSize);
+                const s = 5;
+                ctx.strokeStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.moveTo(p.x - p.boxSize/2, p.y - p.boxSize/2 + s);
+                ctx.lineTo(p.x - p.boxSize/2, p.y - p.boxSize/2);
+                ctx.lineTo(p.x - p.boxSize/2 + s, p.y - p.boxSize/2);
+                ctx.stroke();
+            }
+        });
+
+        requestAnimationFrame(drawLoop);
+    }
+    requestAnimationFrame(drawLoop);
+})();
+</script>
 </body>
 </html>
